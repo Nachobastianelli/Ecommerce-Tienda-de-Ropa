@@ -23,7 +23,48 @@ function App() {
     { id: 5, name: "Chris Evans", email: "chris@example.com", role: "Admin" },
   ]);
 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [rol, setRol] = useState("");
   const [editingUser, setEditingUser] = useState(null);
+  const [typeError, setTypeError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const changeNameHandler = (e) => {
+    setName(e.target.value);
+    setErrorMessage("");
+    setTypeError("");
+  };
+
+  const changeEmailHandler = (e) => {
+    setEmail(e.target.value);
+    setErrorMessage("");
+    setTypeError("");
+  };
+
+  const changeRolHandler = (e) => {
+    setRol(e.target.value);
+    setErrorMessage("");
+    setTypeError("");
+  };
+  const addUser = (e) => {
+    e.preventDefault();
+
+    if (name.trim() === "" || email.trim() === "" || rol === "Select Rol") {
+      setTypeError("Error");
+      setErrorMessage("Completa todos los campos para enviar el formulario...");
+    }
+
+    const newUser = {
+      id: generateUserId(),
+      name: name,
+      email: email,
+      rol: rol,
+    };
+
+    const newListUsers = [newUser, ...Users];
+    setUsers(newListUsers);
+  };
 
   const generateUserId = () => {
     if (users.length === 0) {
@@ -35,10 +76,6 @@ function App() {
     const newId = Math.max(...ids);
 
     return newId + 1;
-  };
-
-  const addUser = (user) => {
-    setUsers([...users, user]);
   };
 
   const updateUser = (updatedUser) => {
@@ -69,9 +106,13 @@ function App() {
       <div className="container mx-auto p-4">
         <h1 className="text-2xl font-bold mb-4">User Manager</h1>
         <NewUser
-          generateUserId={generateUserId}
-          addUser={addUser}
-          users={users}
+          onAddUser={addUser}
+          changeEmailHandler={changeEmailHandler}
+          changeNameHandler={changeNameHandler}
+          changeRolHandler={changeRolHandler}
+          rol={rol}
+          name={name}
+          email={email}
         />
         <Users
           users={users}

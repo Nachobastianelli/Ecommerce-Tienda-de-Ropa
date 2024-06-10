@@ -1,6 +1,6 @@
 import React from "react";
 
-const Alerta = () => {
+const Alerta = ({ message, type }) => {
   return (
     <div className="bg-indigo-900 text-center py-4 lg:px-4 rounded-lg">
       <div
@@ -8,10 +8,10 @@ const Alerta = () => {
         role="alert"
       >
         <span className="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">
-          New
+          {type}
         </span>
         <span className="font-semibold mr-2 text-left flex-auto">
-          Get the coolest t-shirts from our brand new store
+          {message}
         </span>
         <svg
           className="fill-current opacity-75 h-4 w-4"

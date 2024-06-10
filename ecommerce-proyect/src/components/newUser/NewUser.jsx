@@ -1,39 +1,17 @@
 import React, { useState } from "react";
 
-const NewUser = ({ addUser, generatedUserId, users }) => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [rol, setRol] = useState("");
-
-  const changeNameHandler = (e) => {
-    setName(e.target.value);
-  };
-
-  const changeEmailHandler = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const changeRolHandler = (e) => {
-    setRol(e.target.value);
-  };
-
-  const submitUserHandler = (event) => {
-    event.preventDefault();
-    const newUser = {
-      userId: generatedUserId(),
-      userName: name,
-      userEmail: email,
-      userRole: rol,
-    };
-    addUser(newUser);
-    setEmail("");
-    setName("");
-    setRol("");
-  };
-
+const NewUser = ({
+  onAddUser,
+  changeNameHandler,
+  changeEmailHandler,
+  changeRolHandler,
+  rol,
+  name,
+  email,
+}) => {
   return (
     <form
-      onSubmit={submitUserHandler}
+      onSubmit={onAddUser}
       className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
     >
       <h2 className="text-2xl font-semibold text-gray-800 mb-6">Edit User</h2>
