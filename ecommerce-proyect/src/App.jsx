@@ -1,34 +1,38 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Users from "./components/users/Users";
-
-// import Protected from "./routes/Protected";
-// import Alerta from "./components/alerta/Alerta";
-// import Card from "./components/card/Card";
+import Alerta from "./components/alerta/Alerta";
 import Login from "./components/login/Login";
-// import Register from "./components/register/Register";
-// import Home from "./components/home/Home";
-// import Footer from "./components/footer/Footer";
 import NotFound from "./routes/NotFound";
-import { useState } from "react";
-import User from "./components/users/Users";
-import UserItem from "./components/userItem/UserItem";
+import { useEffect, useState } from "react";
 import NewUser from "./components/newUser/NewUser";
 
 function App() {
-  const [users, setUsers] = useState([
-    { id: 1, name: "John Doe", email: "john@example.com", role: "Admin" },
-    { id: 2, name: "Jane Smith", email: "jane@example.com", role: "User" },
-    { id: 3, name: "Sam Wilson", email: "sam@example.com", role: "Editor" },
-    { id: 4, name: "Sara Connor", email: "sara@example.com", role: "User" },
-    { id: 5, name: "Chris Evans", email: "chris@example.com", role: "Admin" },
-  ]);
+  const [users, setUsers] = useState([]);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [rol, setRol] = useState("");
+  const [role, setRole] = useState("");
   const [editingUser, setEditingUser] = useState(null);
   const [typeError, setTypeError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:8000/users", {
+      headers: {
+        accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((userData) => {
+        const usersMapped = userData
+          .map((user) => ({
+            ...user,
+          }))
+          .sort((a, b) => b.id - a.id);
+        setUsers(usersMapped);
+      })
+      .catch((error) => console.log(error));
+  }, []);
 
   const changeNameHandler = (e) => {
     setName(e.target.value);
@@ -42,28 +46,34 @@ function App() {
     setTypeError("");
   };
 
-  const changeRolHandler = (e) => {
-    setRol(e.target.value);
+  const changeRoleHandler = (e) => {
+    setRole(e.target.value);
     setErrorMessage("");
     setTypeError("");
   };
   const addUser = (e) => {
     e.preventDefault();
 
-    if (name.trim() === "" || email.trim() === "" || rol === "Select Rol") {
+    if (name.trim() === "" || email.trim() === "" || role === "") {
       setTypeError("Error");
       setErrorMessage("Completa todos los campos para enviar el formulario...");
+      return;
     }
 
     const newUser = {
       id: generateUserId(),
       name: name,
       email: email,
-      rol: rol,
+      role: role,
     };
 
-    const newListUsers = [newUser, ...Users];
+    const newListUsers = [newUser, ...users];
     setUsers(newListUsers);
+    setTypeError("Success");
+    setErrorMessage("El formulario se envio con exito!");
+    setEmail("");
+    setName("");
+    setRole("");
   };
 
   const generateUserId = () => {
@@ -86,6 +96,8 @@ function App() {
 
   const deleteUser = (userId) => {
     setUsers(users.filter((user) => user.id !== userId));
+    setTypeError("Delete");
+    setErrorMessage("Se elimino con exito el usuario");
   };
 
   const router = createBrowserRouter([
@@ -109,16 +121,25 @@ function App() {
           onAddUser={addUser}
           changeEmailHandler={changeEmailHandler}
           changeNameHandler={changeNameHandler}
-          changeRolHandler={changeRolHandler}
-          rol={rol}
+          changeRoleHandler={changeRoleHandler}
+          role={role}
           name={name}
           email={email}
         />
-        <Users
-          users={users}
-          setEditingUser={setEditingUser}
-          deleteUser={deleteUser}
-        />
+
+        {errorMessage && <Alerta type={typeError} message={errorMessage} />}
+
+        {users.length > 0 ? (
+          <Users
+            users={users}
+            setEditingUser={setEditingUser}
+            deleteUser={deleteUser}
+          />
+        ) : (
+          <p className="text-center font-bold text-gray-500">
+            No hay ningun usuario cargado!
+          </p>
+        )}
       </div>
     </>
   );

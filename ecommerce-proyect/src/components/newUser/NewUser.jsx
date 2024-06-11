@@ -4,8 +4,8 @@ const NewUser = ({
   onAddUser,
   changeNameHandler,
   changeEmailHandler,
-  changeRolHandler,
-  rol,
+  changeRoleHandler,
+  role,
   name,
   email,
 }) => {
@@ -57,8 +57,8 @@ const NewUser = ({
         <select
           name="role"
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-          value={rol}
-          onChange={changeRolHandler}
+          value={role}
+          onChange={changeRoleHandler}
         >
           <option value="">Select Role</option>
           <option value="Admin">Admin</option>
@@ -70,9 +70,9 @@ const NewUser = ({
         <button
           type="submit"
           className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-          disabled={
-            name.trim() === "" || email.trim() === "" || rol === "Select Role"
-          }
+          // disabled={
+          //   name.trim() === "" || email.trim() === "" || rol === "Select Role"
+          // }
         >
           Add User
         </button>
