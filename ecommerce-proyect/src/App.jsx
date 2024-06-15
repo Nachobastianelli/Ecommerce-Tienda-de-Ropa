@@ -5,16 +5,45 @@ import NotFound from "./routes/NotFound";
 import { useEffect, useState } from "react";
 import NewUser from "./components/newUser/NewUser";
 
+const hardcodedUsers = [
+  {
+    id: 1,
+    name: "Ignacio Bastianelli",
+    email: "nachobastianelli2003@gmail.com",
+    role: "Admin",
+  },
+  {
+    id: 2,
+    name: "Danilo Mercado",
+    email: "danilomercado05@gmail.com",
+    role: "Admin",
+  },
+  {
+    id: 3,
+    name: "Francesco Dagostino",
+    email: "francesodagostino@gmail.com",
+    role: "Admin",
+  },
+];
+
 function App() {
   const [users, setUsers] = useState([]);
   const [editingUser, setEditingUser] = useState(null);
 
+  const searchHandler = (searchInput) => {
+    if (searchInput === "") setUsers(hardcodedUsers);
+
+    const searchInputUpperCase = searchInput.toUpperCase();
+    const usersSearched = hardcodedUsers.filter((user) =>
+      user.name.toUpperCase().includes(searchInputUpperCase)
+    );
+    setUsers(usersSearched);
+  };
+
   useEffect(() => {
-    fetch("https://localhost:8000/users", {
+    fetch("http://localhost:8000/users", {
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTY1NjMyNzE4NiwiZXhwIjoxNjU2MzI4MDg2fQ.-si1n7yHpjQ2LEyYqZT6ClIFJOqLOeVXRhwjzyvEZMo",
       },
     })
       .then((response) => response.json())
@@ -30,7 +59,7 @@ function App() {
   }, []);
 
   const addUserHandler = (newUser) => {
-    const userData = { ...newUser, userId: Math.random() };
+    const userData = { ...newUser };
 
     fetch("http://localhost:8000/users", {
       method: "POST",

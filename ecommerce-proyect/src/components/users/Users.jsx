@@ -4,26 +4,26 @@ import DeleteModal from "../deleteModal/DeleteModal";
 
 const User = ({ users, setEditingUser, onDelete }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [bookIdToDelete, setBookIdToDelete] = useState(-1);
+  const [userIdToDelete, setUserIdToDelete] = useState(-1);
 
   const showModalHandler = (id) => {
     setShowDeleteModal(true);
-    setBookIdToDelete(id);
+    setUserIdToDelete(id);
   };
 
   const hideModalHandler = () => {
     setShowDeleteModal(false);
-    setBookIdToDelete(-1);
+    setUserIdToDelete(-1);
   };
 
-  const deleteBookHandler = () => {
-    onDelete(bookIdToDelete);
+  const deleteUserHandler = () => {
+    onDelete(userIdToDelete);
   };
 
   return (
     <div className="mt-4">
       <DeleteModal
-        onDelete={deleteBookHandler}
+        onDelete={deleteUserHandler}
         showDeleteModal={showDeleteModal}
         onHide={hideModalHandler}
       />
@@ -37,7 +37,7 @@ const User = ({ users, setEditingUser, onDelete }) => {
             email={user.email}
             role={user.role}
             onEdit={setEditingUser}
-            onDelete={onDelete}
+            onShowModal={showModalHandler}
           />
         ))}
       </ul>

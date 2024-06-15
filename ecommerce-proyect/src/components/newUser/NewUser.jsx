@@ -36,7 +36,6 @@ const NewUser = ({ onAddUser }) => {
     }
 
     const newUser = {
-      id: Math.floor(Math.random() * 999999),
       name: name,
       email: email,
       role: role,

@@ -1,6 +1,9 @@
 import React from "react";
 
-const UserItem = ({ id, name, email, role, onEdit, onDelete }) => {
+const UserItem = ({ id, name, email, role, onEdit, onShowModal }) => {
+  const modalShowHandler = () => {
+    onShowModal(id);
+  };
   return (
     <>
       <li className="bg-gray-100 p-2 mb-2 flex justify-between items-center rounded">
@@ -18,7 +21,7 @@ const UserItem = ({ id, name, email, role, onEdit, onDelete }) => {
           </button>
           <button
             className="bg-red-500 text-white px-2 py-1 rounded"
-            onClick={() => onDelete(id)}
+            onClick={modalShowHandler}
           >
             Delete
           </button>
