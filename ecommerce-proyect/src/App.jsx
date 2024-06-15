@@ -7,6 +7,10 @@ import NewUser from "./components/newUser/NewUser";
 import Home from "./components/home/Home";
 import Products from "./components/products/Products";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+
+
 const hardcodedUsers = [
   {
     id: 1,
@@ -155,12 +159,15 @@ function App() {
   return (
     <>
       <div className="container mx-auto p-4">
-        <button className="bg-slate-200 px-4 py-2 rounded hover:bg-slate-300 dark:bg-slate-950 dark:text-white dark:hover:bg-slate-900" 
+        <button className="bg-slate-200 px-4 py-2 rounded hover:bg-slate-300 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-700"
         onClick={handleChangeTheme}>
-          Tema
+          <FontAwesomeIcon icon={theme === "light" ? faMoon : faSun} />
         </button>
 
-        <h1 className="text-2xl font-bold mb-4">User Manager</h1>
+        <Home/>
+      {
+        /*
+       <h1 className="text-2xl font-bold mb-4">User Manager</h1>
         <NewUser onAddUser={addUserHandler} />
         {users.length > 0 ? (
           <Users
@@ -173,6 +180,8 @@ function App() {
             No hay ningun usuario cargado!
           </p>
         )}
+           */
+      }
       </div>
     </>
   );
