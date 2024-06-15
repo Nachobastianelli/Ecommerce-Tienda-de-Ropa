@@ -2,8 +2,8 @@ import React from "react";
 
 const Header = ({ username }) => {
   return (
-    <header className="bg-white dark:bg-slate-800 shadow-md py-4">
-      <div className="container mx-auto flex items-center justify-between">
+    <header className="bg-white dark:bg-slate-800 shadow-md py-4 w-full">
+      <div className="flex items-center justify-between px-4">
         <div className="flex items-center">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
             WAIKIKI

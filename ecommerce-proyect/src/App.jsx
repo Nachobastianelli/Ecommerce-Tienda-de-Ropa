@@ -159,7 +159,7 @@ function App() {
   return (
     <>
       <div className="container mx-auto p-4">
-        <button className="bg-slate-200 px-4 py-2 rounded hover:bg-slate-300 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-700"
+        <button className="absolute top-4 right-4 bg-slate-200 px-4 py-2 rounded hover:bg-slate-300 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-700"
         onClick={handleChangeTheme}>
           <FontAwesomeIcon icon={theme === "light" ? faMoon : faSun} />
         </button>
