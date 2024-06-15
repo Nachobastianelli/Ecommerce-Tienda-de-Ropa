@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import UserItem from "../userItem/UserItem";
 import DeleteModal from "../deleteModal/DeleteModal";
+import EditModal from "../editModal/EditModal";
 
-const User = ({ users, setEditingUser, onDelete }) => {
+const User = ({ users, onDelete, onUpdate }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [userIdToDelete, setUserIdToDelete] = useState(-1);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [userToEdit, setUserToEdit] = useState(null);
 
   const showModalHandler = (id) => {
     setShowDeleteModal(true);
@@ -18,6 +21,22 @@ const User = ({ users, setEditingUser, onDelete }) => {
 
   const deleteUserHandler = () => {
     onDelete(userIdToDelete);
+    hideModalHandler();
+  };
+
+  const showEditModalHandler = (user) => {
+    setUserToEdit(user);
+    setShowEditModal(true);
+  };
+
+  const hideEditModalHandler = () => {
+    setShowEditModal(false);
+    setUserToEdit(null);
+  };
+
+  const updateUserHandler = (id, data) => {
+    onUpdate(id, data);
+    hideEditModalHandler();
   };
 
   return (
@@ -27,7 +46,13 @@ const User = ({ users, setEditingUser, onDelete }) => {
         showDeleteModal={showDeleteModal}
         onHide={hideModalHandler}
       />
-      <h2 className="text-xl font-semibold">Users</h2>
+      <EditModal
+        user={userToEdit}
+        showEditModal={showEditModal}
+        onHide={hideEditModalHandler}
+        onSave={updateUserHandler}
+      />
+      <h2 className="text-xl font-semibold">Usuarios</h2>
       <ul className="mt-2">
         {users.map((user) => (
           <UserItem
@@ -36,8 +61,9 @@ const User = ({ users, setEditingUser, onDelete }) => {
             name={user.name}
             email={user.email}
             role={user.role}
-            onEdit={setEditingUser}
+            imageUrl={user.imageUrl}
             onShowModal={showModalHandler}
+            onEdit={() => showEditModalHandler(user)} // Pasa la función para editar
           />
         ))}
       </ul>

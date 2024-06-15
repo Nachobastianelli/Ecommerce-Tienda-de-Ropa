@@ -5,6 +5,7 @@ const NewUser = ({ onAddUser }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [typeError, setTypeError] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -26,6 +27,12 @@ const NewUser = ({ onAddUser }) => {
     setErrorMessage("");
   };
 
+  const changeImageHandler = (e) => {
+    setImageUrl(e.target.value);
+    setErrorMessage("");
+    setTypeError("");
+  };
+
   const addUser = (e) => {
     e.preventDefault();
 
@@ -39,6 +46,9 @@ const NewUser = ({ onAddUser }) => {
       name: name,
       email: email,
       role: role,
+      imageUrl: imageUrl.length
+        ? imageUrl
+        : "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg",
     };
 
     onAddUser(newUser);
@@ -47,6 +57,7 @@ const NewUser = ({ onAddUser }) => {
     setEmail("");
     setName("");
     setRole("");
+    setImageUrl("");
   };
 
   return (
@@ -85,6 +96,22 @@ const NewUser = ({ onAddUser }) => {
             value={email}
             onChange={changeEmailHandler}
             placeholder="Enter email address"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="email"
+          >
+            ImageUrl
+          </label>
+          <input
+            type="text"
+            name="imageUrl"
+            value={imageUrl}
+            onChange={changeImageHandler}
+            placeholder="Enter imageUrl"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>

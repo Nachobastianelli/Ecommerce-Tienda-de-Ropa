@@ -13,18 +13,24 @@ const hardcodedUsers = [
     name: "Ignacio Bastianelli",
     email: "nachobastianelli2003@gmail.com",
     role: "Admin",
+    imageUrl:
+      "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg",
   },
   {
     id: 2,
     name: "Danilo Mercado",
     email: "danilomercado61@gmail.com",
     role: "Admin",
+    imageUrl:
+      "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg",
   },
   {
     id: 3,
     name: "Francesco Dagostino",
     email: "francesodagostino@gmail.com",
     role: "Admin",
+    imageUrl:
+      "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg",
   },
 ];
 
@@ -93,6 +99,26 @@ function App() {
       .catch((error) => console.log(error));
   };
 
+  const updateUserHandler = (id, data) => {
+    fetch(`http://localhost:8000/users/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not Ok");
+        }
+        return response.json();
+      })
+      .then((updatedUser) => {
+        setUsers(users.map((user) => (user.id === id ? updatedUser : user)));
+      })
+      .catch((error) => console.error("Error updating user:", error));
+  };
+
   const router = createBrowserRouter([
     {
       path: "/login",
@@ -107,16 +133,19 @@ function App() {
   return (
     <>
       <div className="container mx-auto p-4">
-        {/* <h1 className="text-2xl font-bold mb-4">User Manager</h1>
+        <h1 className="text-2xl font-bold mb-4">User Manager</h1>
         <NewUser onAddUser={addUserHandler} />
         {users.length > 0 ? (
-          <Users users={users} onDelete={deleteUserHandler} />
+          <Users
+            users={users}
+            onDelete={deleteUserHandler}
+            onUpdate={updateUserHandler}
+          />
         ) : (
           <p className="text-center font-bold text-gray-500">
             No hay ningun usuario cargado!
           </p>
-        )} */}
-        <Home />
+        )}
       </div>
     </>
   );
