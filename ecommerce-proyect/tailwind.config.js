@@ -1,13 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
-  theme: {
-    extend: {
-      backgroundImage: {
-        "monumento-bandera":
-          "url('https://www.impulsonegocios.com/wp-content/uploads/2021/04/Monumento-a-la-Bandera-de-Rosario.jpg')",
-      },
+    content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+    "darkMode": 'class',
+    theme: {
+        extend: {
+            backgroundImage: {
+                "monumento-bandera": "url('https://www.impulsonegocios.com/wp-content/uploads/2021/04/Monumento-a-la-Bandera-de-Rosario.jpg')",
+            },
+        },
     },
-  },
-  plugins: [],
+    plugins: [],
 };

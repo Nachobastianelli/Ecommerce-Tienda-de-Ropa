@@ -130,9 +130,36 @@ function App() {
     },
   ]);
 
+
+  //theme
+  const [theme, setTheme] = useState(() => {
+    if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  });
+
+  useEffect(() => {
+    if (theme == "dark") {
+      document.querySelector("html").classList.add("dark")
+    } else {
+      document.querySelector("html").classList.remove("dark")
+    }
+  }, [theme])
+
+  const handleChangeTheme = () => {
+    setTheme(preveTheme => preveTheme == "light" ? "dark" : "light")
+  }
+
+
   return (
     <>
       <div className="container mx-auto p-4">
+        <button className="bg-slate-200 px-4 py-2 rounded hover:bg-slate-300 dark:bg-slate-950 dark:text-white dark:hover:bg-slate-900" 
+        onClick={handleChangeTheme}>
+          Tema
+        </button>
+
         <h1 className="text-2xl font-bold mb-4">User Manager</h1>
         <NewUser onAddUser={addUserHandler} />
         {users.length > 0 ? (
