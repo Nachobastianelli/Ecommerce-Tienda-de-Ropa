@@ -4,6 +4,8 @@ import Login from "./components/login/Login";
 import NotFound from "./routes/NotFound";
 import { useEffect, useState } from "react";
 import NewUser from "./components/newUser/NewUser";
+import Home from "./components/home/Home";
+import Products from "./components/products/Products";
 
 const hardcodedUsers = [
   {
@@ -15,7 +17,7 @@ const hardcodedUsers = [
   {
     id: 2,
     name: "Danilo Mercado",
-    email: "danilomercado05@gmail.com",
+    email: "danilomercado61@gmail.com",
     role: "Admin",
   },
   {
@@ -105,7 +107,7 @@ function App() {
   return (
     <>
       <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">User Manager</h1>
+        {/* <h1 className="text-2xl font-bold mb-4">User Manager</h1>
         <NewUser onAddUser={addUserHandler} />
         {users.length > 0 ? (
           <Users users={users} onDelete={deleteUserHandler} />
@@ -113,7 +115,8 @@ function App() {
           <p className="text-center font-bold text-gray-500">
             No hay ningun usuario cargado!
           </p>
-        )}
+        )} */}
+        <Home />
       </div>
     </>
   );
