@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Route, Router, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
 import Users from "./components/users/Users";
 import Login from "./components/login/Login";
 import NotFound from "./routes/NotFound";
@@ -6,9 +6,6 @@ import { useEffect, useState } from "react";
 import NewUser from "./components/newUser/NewUser";
 import Home from "./components/pages/Home";
 import Products from "./components/products/Products";
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 
 const hardcodedUsers = [
@@ -132,39 +129,24 @@ function App() {
       path: "*",
       element: <NotFound />,
     },
+    {
+      path: "/home",
+      element: <Home />
+    },
+    {
+      path: "/users",
+      element: <Users/>
+    },
   ]);
 
-
-  //theme
-  const [theme, setTheme] = useState(() => {
-    if(window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return "dark";
-    }
-    return "light";
-  });
-
-  useEffect(() => {
-    if (theme == "dark") {
-      document.querySelector("html").classList.add("dark")
-    } else {
-      document.querySelector("html").classList.remove("dark")
-    }
-  }, [theme])
-
-  const handleChangeTheme = () => {
-    setTheme(preveTheme => preveTheme == "light" ? "dark" : "light")
-  }
 
 
   return (
     <>
-      <div className="container mx-auto p-4">
-        <button className="absolute top-4 right-4 bg-slate-200 px-4 py-2 rounded hover:bg-slate-300 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-700"
-        onClick={handleChangeTheme}>
-          <FontAwesomeIcon icon={theme === "light" ? faMoon : faSun} />
-        </button>
+      <div className="container  item-center mx-auto p-4">
 
-        <Home/>
+        {<RouterProvider router={router} />}
+   
       {
         /*
        <h1 className="text-2xl font-bold mb-4">User Manager</h1>
