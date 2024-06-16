@@ -4,7 +4,7 @@ import Login from "./components/login/Login";
 import NotFound from "./routes/NotFound";
 import { useEffect, useState } from "react";
 import NewUser from "./components/newUser/NewUser";
-import Home from "./components/home/Home";
+import Home from "./components/pages/Home";
 import Products from "./components/products/Products";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

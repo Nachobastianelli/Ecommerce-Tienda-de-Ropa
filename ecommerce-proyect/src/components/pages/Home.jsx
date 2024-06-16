@@ -11,10 +11,14 @@ function Home() {
     <div className="bg-slate-200 dark:bg-slate-700 min-h-screen">
       <Header username={username} />
       <main className="bg-slate-100 dark:bg-slate-600 p-4">
-        <Products />
-        <Products />
-        <Products />
-        <Products />
+      <div className="flex flex-wrap gap-4">
+          <Products />
+          <Products />
+          <Products />
+          <Products />
+          <Products />
+          <Products />
+        </div>
       </main>
       <Footer />
     </div>

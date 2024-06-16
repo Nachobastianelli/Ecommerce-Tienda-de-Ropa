@@ -26,10 +26,19 @@ const Header = ({ username }) => {
             Contacto
           </a>
         </nav>
+
+        <div>
+          <a
+          href="/compras"
+          className="text-gray-900 dark:text-white hover:underline">
+            Mis Compras
+          </a>
+        </div>
+
         <div className="flex items-center space-x-4">
           <div className="user-container flex items-center">
             <span className="text-gray-900 dark:text-white">
-              Usuario: {username}
+              {username}
             </span>
             <img
               src="https://via.placeholder.com/40"
