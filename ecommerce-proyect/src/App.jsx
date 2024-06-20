@@ -1,12 +1,16 @@
-import { Route, Router, RouterProvider, Routes, createBrowserRouter } from "react-router-dom";
+import {
+  Route,
+  Router,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+} from "react-router-dom";
 import Users from "./components/users/Users";
 import Login from "./components/login/Login";
 import NotFound from "./routes/NotFound";
 import { useEffect, useState } from "react";
 import NewUser from "./components/newUser/NewUser";
-import Home from "./components/pages/Home";
-import Products from "./components/products/Products";
-
+import Dashboard from "./components/dashboard/Dashboard";
 
 const hardcodedUsers = [
   {
@@ -131,24 +135,20 @@ function App() {
     },
     {
       path: "/home",
-      element: <Home />
+      element: <Dashboard />,
     },
     {
       path: "/users",
-      element: <Users/>
+      element: <Users />,
     },
   ]);
-
-
 
   return (
     <>
       <div className="container  item-center mx-auto p-4">
-
         {<RouterProvider router={router} />}
-   
-      {
-        /*
+
+        {/*
        <h1 className="text-2xl font-bold mb-4">User Manager</h1>
         <NewUser onAddUser={addUserHandler} />
         {users.length > 0 ? (
@@ -162,8 +162,7 @@ function App() {
             No hay ningun usuario cargado!
           </p>
         )}
-           */
-      }
+           */}
       </div>
     </>
   );
