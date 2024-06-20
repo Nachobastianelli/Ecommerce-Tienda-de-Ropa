@@ -1,7 +1,7 @@
 import { useState, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
-import ChangeTheme from "../../services/theme/ChangeTheme"
+import ToggleTheme from "../toggleThemes/ToggleThemes";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -56,7 +56,7 @@ const Login = () => {
   return (
     <>
       <div className="w-full max-w-xs">
-        <ChangeTheme/>
+        <ToggleTheme />
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={submitHandler}
