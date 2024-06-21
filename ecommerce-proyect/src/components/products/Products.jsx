@@ -48,6 +48,7 @@ const Products = ({ products, onDelete, onUpdate }) => {
       price={product.price}
       totalPrice={product.totalPrice}
       discount={product.discount}
+      product={product}
     />;
   });
 
