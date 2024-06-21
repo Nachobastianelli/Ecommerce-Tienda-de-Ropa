@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
-import ProductItem from "../prodcutItem/ProductItem";
+import React, { useState, useEffect, useContext } from "react";
+import ProductsItem from "../productsItem/ProductsItem";
 import DeleteModal from "../deleteModal/DeleteModal";
 import EditModal from "../editModal/EditModal";
+import { initialProducts } from "../../mocks/Mocks";
 
-const Products = ({ products, onDelete, onUpdate }) => {
+const Products = ({ onDelete, onUpdate }) => {
+  const [products, setProducts] = useState(initialProducts);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState(-1);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -24,13 +26,13 @@ const Products = ({ products, onDelete, onUpdate }) => {
     hideModalHandler();
   };
 
-  const showEditModalHandler = (products) => {
-    setProductToEdit(products);
+  const showEditModalHandler = (product) => {
+    setProductToEdit(product);
     setShowEditModal(true);
   };
 
   const hideEditModalHandler = () => {
-    setShowDeleteModal(false);
+    setShowEditModal(false);
     setProductToEdit(null);
   };
 
@@ -39,18 +41,17 @@ const Products = ({ products, onDelete, onUpdate }) => {
     hideEditModalHandler();
   };
 
-  const productMapped = products.map((product) => {
-    <ProductItem
+  const productMapped = products.map((product) => (
+    <ProductsItem
       key={product.id}
       id={product.id}
       imageUrl={product.imageUrl}
       name={product.name}
       price={product.price}
-      totalPrice={product.totalPrice}
-      discount={product.discount}
-      product={product}
-    />;
-  });
+      onDelete={() => showModalHandler(product.id)}
+      onEdit={() => showEditModalHandler(product)}
+    />
+  ));
 
   return (
     <>
@@ -66,8 +67,7 @@ const Products = ({ products, onDelete, onUpdate }) => {
           onHide={hideEditModalHandler}
           onSave={updateProductsHandler}
         />
-
-        {productMapped}
+        <div className="flex flex-row flex-wrap mt-24">{productMapped}</div>
       </div>
     </>
   );

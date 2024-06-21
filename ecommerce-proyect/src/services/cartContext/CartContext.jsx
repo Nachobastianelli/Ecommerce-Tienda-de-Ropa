@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import React, { createContext, useState } from "react";
 
 export const CartContext = createContext();
 
@@ -9,18 +9,22 @@ export function CartProvider({ children }) {
     const productInCartIndex = cart.findIndex((item) => item.id === product.id);
 
     if (productInCartIndex >= 0) {
-      const newCart = structuredClone(cart);
+      const newCart = [...cart];
       newCart[productInCartIndex].quantity += 1;
-      return setCart(newCart);
+      setCart(newCart);
+    } else {
+      setCart((prevCart) => [
+        ...prevCart,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ]);
     }
+  };
 
-    setCart((prevState) => [
-      ...prevState,
-      {
-        ...product,
-        quantity: 1,
-      },
-    ]);
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
 
   const clearCart = () => {
@@ -32,6 +36,7 @@ export function CartProvider({ children }) {
       value={{
         cart,
         addToCart,
+        removeFromCart,
         clearCart,
       }}
     >
