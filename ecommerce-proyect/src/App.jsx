@@ -15,6 +15,8 @@ import NewUser from "./components/newUser/NewUser";
 import useFetch from "./hooks/useFetch";
 import Products from "./components/products/Products";
 import Header from "./components/header/Header";
+import CartModal from "./components/cartModal/CartModal";
+import { CartProvider } from "./services/cartContext/CartContext";
 
 function App() {
   const {
@@ -66,11 +68,14 @@ function App() {
     },
   ]);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
-    <>
-      <Header />
+    <CartProvider>
+      <Header onCartOpen={() => setIsModalOpen(true)} />
       <Products />
-    </>
+      <CartModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+    </CartProvider>
   );
 }
 

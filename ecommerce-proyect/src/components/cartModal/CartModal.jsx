@@ -1,177 +1,106 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../../services/cartContext/CartContext";
 
-const ManageCartsModal = ({ onClose }) => {
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [total, setTotal] = useState(0);
+const CartModal = ({ isOpen, onClose }) => {
+  const { cart, removeFromCart, clearCart } = useContext(CartContext);
 
-  const toggleCheckbox = (value, amount) => {
-    if (selectedItems.includes(value)) {
-      setSelectedItems(selectedItems.filter((item) => item !== value));
-      setTotal(total - amount);
-    } else {
-      setSelectedItems([...selectedItems, value]);
-      setTotal(total + amount);
-    }
-  };
-
-  const handleConfirm = () => {
-    console.log("Selected Items:", selectedItems);
-    console.log("Total:", total);
-
-    onClose();
+  const calculateTotal = () => {
+    return cart
+      .reduce((acc, item) => acc + item.price * item.quantity, 0)
+      .toFixed(2);
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-auto bg-gray-100 flex">
-      <div className="relative p-8 bg-white w-full max-w-md m-auto flex-col flex rounded-lg shadow-lg">
-        <header className="border-b border-gray-200 px-5 py-4">
-          <div className="font-semibold text-gray-800">Manage Carts</div>
-        </header>
-
-        <div className="overflow-x-auto p-3">
-          <table className="w-full table-auto">
-            <thead className="bg-gray-50 text-xs font-semibold uppercase text-gray-400">
-              <tr>
-                <th></th>
-                <th className="p-2">
-                  <div className="text-left font-semibold">Product Name</div>
-                </th>
-                <th className="p-2">
-                  <div className="text-left font-semibold">Quantity</div>
-                </th>
-                <th className="p-2">
-                  <div className="text-left font-semibold">Total</div>
-                </th>
-                <th className="p-2">
-                  <div className="text-center font-semibold">Action</div>
-                </th>
-              </tr>
-            </thead>
-
-            <tbody className="divide-y divide-gray-100 text-sm">
-              <tr>
-                <td className="p-2">
-                  <input
-                    type="checkbox"
-                    className="h-5 w-5"
-                    value="id-1"
-                    onChange={() => toggleCheckbox("id-1", 2890.66)}
+    <>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
+          <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-lg transform transition-all duration-300 ease-out">
+            <h2 className="text-3xl font-extrabold mb-6 text-gray-900 dark:text-white">
+              Carrito de Compras
+            </h2>
+            <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+              {cart.map((product) => (
+                <li
+                  key={product.id}
+                  className="flex items-center py-4 transition-transform transform hover:scale-105"
+                >
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="w-20 h-20 object-cover rounded-lg shadow-lg"
                   />
-                </td>
-                <td className="p-2">
-                  <div className="font-medium text-gray-800">
-                    Samsung Galaxy Note 4
-                  </div>
-                </td>
-                <td className="p-2">
-                  <div className="text-left">1</div>
-                </td>
-                <td className="p-2">
-                  <div className="text-left font-medium text-green-500">
-                    RM 2,890.66
-                  </div>
-                </td>
-                <td className="p-2">
-                  <div className="flex justify-center">
-                    <button>
-                      <svg
-                        className="h-8 w-8 rounded-full p-1 hover:bg-gray-100 hover:text-blue-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <td className="p-2">
-                  <input
-                    type="checkbox"
-                    className="h-5 w-5"
-                    value="id-2"
-                    onChange={() => toggleCheckbox("id-2", 120.5)}
-                  />
-                </td>
-                <td className="p-2">
-                  <div>
-                    <div className="font-medium text-gray-800">
-                      Logitech Keyboard
+                  <div className="ml-6 flex-grow">
+                    <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                      {product.name}
+                    </h3>
+                    <div className="mt-2 flex items-center">
+                      <span className="text-gray-500 dark:text-gray-400">
+                        Cantidad:{" "}
+                      </span>
+                      <span className="ml-2 text-gray-900 dark:text-white font-medium">
+                        {product.quantity}
+                      </span>
+                    </div>
+                    <div className="mt-2 flex items-center">
+                      <span className="text-gray-500 dark:text-gray-400">
+                        Precio:{" "}
+                      </span>
+                      <span className="ml-2 text-gray-900 dark:text-white font-medium">
+                        ${(product.price * product.quantity).toFixed(2)}
+                      </span>
                     </div>
                   </div>
-                </td>
-                <td className="p-2">
-                  <div className="text-left">1</div>
-                </td>
-                <td className="p-2">
-                  <div className="text-left font-medium text-green-500">
-                    RM 120.50
-                  </div>
-                </td>
-                <td className="p-2">
-                  <div className="flex justify-center">
-                    <button>
-                      <svg
-                        className="h-8 w-8 rounded-full p-1 hover:bg-gray-100 hover:text-blue-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  <button
+                    onClick={() => removeFromCart(product.id)}
+                    className="ml-6 bg-red-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 ease-out"
+                  >
+                    Eliminar
+                  </button>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-6">
+              <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white">
+                Total: ${calculateTotal()}
+              </h3>
+            </div>
+            <div className="mt-8 flex justify-end space-x-4">
+              <button
+                onClick={onClose}
+                className="bg-gray-700 text-white px-5 py-3 rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200 ease-out"
+              >
+                Cerrar
+              </button>
+              <button
+                disabled={cart.length === 0 || calculateTotal() === "0.00"}
+                onClick={() => {
+                  clearCart();
+                  alert("Compra realizada");
+                }}
+                className={`bg-blue-600 text-white px-5 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 ease-out
+    ${
+      cart.length === 0 || calculateTotal() === "0.00"
+        ? "opacity-50 cursor-not-allowed"
+        : "hover:bg-blue-700"
+    }
+  `}
+                style={{
+                  opacity:
+                    cart.length === 0 || calculateTotal() === "0.00" ? 0.5 : 1,
+                  pointerEvents:
+                    cart.length === 0 || calculateTotal() === "0.00"
+                      ? "none"
+                      : "auto",
+                }}
+              >
+                Comprar
+              </button>
+            </div>
+          </div>
         </div>
-
-        <div className="flex justify-end space-x-4 border-t border-gray-100 px-5 py-4 text-2xl font-bold">
-          <div>Total</div>
-          <div className="text-blue-600">RM {total.toFixed(2)}</div>
-        </div>
-
-        <div className="flex justify-end">
-          <input
-            type="hidden"
-            className="border border-black bg-gray-50"
-            value={selectedItems.join(",")}
-          />
-        </div>
-
-        <div className="flex justify-end space-x-4 border-t border-gray-100 px-5 py-4">
-          <button
-            className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg"
-            onClick={handleConfirm}
-          >
-            Confirm
-          </button>
-          <button
-            className="px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg"
-            onClick={onClose}
-          >
-            Cancel
-          </button>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
-export default ManageCartsModal;
+export default CartModal;

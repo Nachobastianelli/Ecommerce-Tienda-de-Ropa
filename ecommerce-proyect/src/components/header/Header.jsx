@@ -2,15 +2,10 @@ import React, { useContext, useState } from "react";
 import { CartIcon } from "../../icons/Icons";
 import { CartContext } from "../../services/cartContext/CartContext";
 
-const Header = ({ username }) => {
+const Header = ({ username, onCartOpen }) => {
   const { cart } = useContext(CartContext);
   const [showCartModal, setShowCartModal] = useState(false);
-
-  const toggleCartModal = () => {
-    setShowCartModal(!showCartModal);
-  };
-
-  const itemsLength = cart.reduce((total, item) => total + item.quantity, 0);
+  const itemsLength = cart.reduce((count, item) => count + item.quantity, 0);
 
   return (
     <header className="bg-white dark:bg-slate-800 shadow-md py-4 fixed top-0 w-full z-50">
@@ -53,7 +48,7 @@ const Header = ({ username }) => {
         <div className="flex items-center space-x-4 gap-6">
           <button
             className="text-gray-900 dark:text-white hover:underline"
-            onClick={toggleCartModal}
+            onClick={onCartOpen}
           >
             <CartIcon itemsLength={itemsLength} />
           </button>
@@ -90,7 +85,7 @@ const Header = ({ username }) => {
             )}
             <button
               className="mt-4 bg-gray-200 hover:bg-gray-300 text-gray-900 font-semibold py-2 px-4 rounded-lg"
-              onClick={toggleCartModal}
+              onClick={!onCartOpen}
             >
               Close
             </button>
