@@ -17,6 +17,7 @@ import Products from "./components/products/Products";
 import Header from "./components/header/Header";
 import CartModal from "./components/cartModal/CartModal";
 import { CartProvider } from "./services/cartContext/CartContext";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const {
@@ -75,6 +76,7 @@ function App() {
       <Header onCartOpen={() => setIsModalOpen(true)} />
       <Products />
       <CartModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+      <Footer />
     </CartProvider>
   );
 }
