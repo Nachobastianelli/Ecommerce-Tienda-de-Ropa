@@ -2,12 +2,16 @@ import React, { useContext, useState } from "react";
 import { CartIcon } from "../../icons/Icons";
 import { CartContext } from "../../services/cartContext/CartContext";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { Link } from "react-router-dom";
 
 const Header = ({ username, onCartOpen }) => {
   const { cart } = useContext(CartContext);
   const [showCartModal, setShowCartModal] = useState(false);
   const itemsLength = cart.reduce((count, item) => count + item.quantity, 0);
   const { user } = useContext(AuthenticationContext);
+
+  //menu desplegable
+  const [showDropdown, setShowDropdown] = useState(false);
 
   return (
     <header className="bg-white dark:bg-slate-800 shadow-md py-4 fixed top-0 w-full z-50">
@@ -27,12 +31,51 @@ const Header = ({ username, onCartOpen }) => {
           >
             Inicio
           </a>
-          <a
-            href="#"
-            className="relative inline cursor-pointer text-l before:bg-violet-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
-          >
-            Productos
-          </a>
+
+          
+          <div className="relative inline-block">
+            <a
+              href="#"
+              className="relative inline cursor-pointer text-l before:bg-violet-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
+              onMouseEnter={() => setShowDropdown(true)}
+              onMouseLeave={() => setShowDropdown(false)}
+            >
+              Productos
+            </a>
+            {showDropdown && (
+              <div
+                className="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 shadow-lg rounded-lg z-10"
+                onMouseEnter={() => setShowDropdown(true)}
+                onMouseLeave={() => setShowDropdown(false)}
+              >
+                <Link
+                  to="/remeras"
+                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700"
+                >
+                  Remeras
+                </Link>
+                <Link
+                  to="/buzos"
+                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700"
+                >
+                  Buzos
+                </Link>
+                <Link
+                  to="/zapatillas"
+                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700"
+                >
+                  Zapatillas
+                </Link>
+                <Link
+                  to="/accesorios"
+                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700"
+                >
+                  Accesorios
+                </Link>
+              </div>
+            )}
+          </div>
+
           <a
             href="#"
             className="relative inline cursor-pointer text-l before:bg-violet-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
