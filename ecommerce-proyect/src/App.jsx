@@ -47,12 +47,12 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/login",
-      element: <Login />,
+      path: "/registre",
+      element: <Register/>
     },
     {
-      path: "*",
-      element: <NotFound />,
+      path: "/login",
+      element: <Login />,
     },
     {
       path: "/home",
@@ -68,11 +68,20 @@ function App() {
         />
       ),
     },
+    {
+      path: "*",
+      element: <NotFound />,
+    },
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  return <Header />;
+  return (
+    <RouterProvider router={router}>
+      <Header/>
+      <Footer/>
+    </RouterProvider>
+  );
 }
 
 export default App;
