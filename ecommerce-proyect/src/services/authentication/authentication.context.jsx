@@ -1,10 +1,9 @@
 import { useState, createContext } from "react";
 
-export const AuthenticationContext = createContext();
+export const AuthenticationContext = createContext(); //creamos el context
 
 const userValue = JSON.parse(localStorage.getItem("user"));
 
-// eslint-disable-next-line react/prop-types
 export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(userValue);
 

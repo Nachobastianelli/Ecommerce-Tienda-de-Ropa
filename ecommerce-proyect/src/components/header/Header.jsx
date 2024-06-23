@@ -1,11 +1,13 @@
 import React, { useContext, useState } from "react";
 import { CartIcon } from "../../icons/Icons";
 import { CartContext } from "../../services/cartContext/CartContext";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 const Header = ({ username, onCartOpen }) => {
   const { cart } = useContext(CartContext);
   const [showCartModal, setShowCartModal] = useState(false);
   const itemsLength = cart.reduce((count, item) => count + item.quantity, 0);
+  const { user } = useContext(AuthenticationContext);
 
   return (
     <header className="bg-white dark:bg-slate-800 shadow-md py-4 fixed top-0 w-full z-50">
@@ -56,7 +58,7 @@ const Header = ({ username, onCartOpen }) => {
           <div className="user-container flex items-center">
             <span className="text-gray-900 dark:text-white">{username}</span>
             <img
-              src="https://via.placeholder.com/40"
+              src={user.imageUrl}
               alt="User Avatar"
               className="ml-2 w-10 h-10 rounded-full border border-gray-300"
             />

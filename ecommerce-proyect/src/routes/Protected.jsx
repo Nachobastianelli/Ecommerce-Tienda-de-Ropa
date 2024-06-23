@@ -5,7 +5,7 @@ import { AuthenticationContext } from "../services/authentication/authentication
 const Protected = () => {
   const { user } = useContext(AuthenticationContext);
 
-  if (!user) return <Navigate to="/login" replace />;
+  if (!user) return <Navigate to="/hola" replace />;
   return <Outlet />;
 };
 

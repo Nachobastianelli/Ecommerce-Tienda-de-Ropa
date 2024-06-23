@@ -5,7 +5,7 @@ import "toastify-js/src/toastify.css";
 const useToast = () => {
     const showToast = (message, type) => {
 
-        const styleToats = type ? "linear-gradient(to right, #ff5f6d, #ffc371)" : "linear-gradient(to right, #00b09b, #96c93d)"
+        const styleToats = type ? "linear-gradient(to right, #00b09b, #96c93d)" : "linear-gradient(to right, #ff5f6d, #ffc371)"
 
         Toastify({
             text: message,

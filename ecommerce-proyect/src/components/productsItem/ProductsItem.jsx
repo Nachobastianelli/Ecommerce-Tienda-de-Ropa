@@ -11,7 +11,7 @@ const ProductsItem = ({ product }) => {
       addToCart({ ...product, quantity });
     }
   };
-  // Comentario para ver si se pasa bien por gits
+
   return (
     <div className="mx-auto mt-11 w-80 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
       <img

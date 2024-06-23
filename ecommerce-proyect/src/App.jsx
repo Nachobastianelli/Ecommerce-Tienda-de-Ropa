@@ -18,6 +18,7 @@ import Header from "./components/header/Header";
 import CartModal from "./components/cartModal/CartModal";
 import { CartProvider } from "./services/cartContext/CartContext";
 import Footer from "./components/footer/Footer";
+import Register from "./components/register/Register";
 
 function App() {
   const {
@@ -71,14 +72,7 @@ function App() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  return (
-    <CartProvider>
-      <Header onCartOpen={() => setIsModalOpen(true)} />
-      <Products />
-      <CartModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      <Footer />
-    </CartProvider>
-  );
+  return <Header />;
 }
 
 export default App;

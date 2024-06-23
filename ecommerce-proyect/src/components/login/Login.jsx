@@ -1,62 +1,128 @@
 import { useState, useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
-import ToggleTheme from "../toggleThemes/ToggleThemes";
+import useFetch from "../../hooks/useFetch";
+import useToast from "../../hooks/useToast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [erros, setErrors] = useState({
-    email: false,
-    password: false,
+  const [errors, setErrors] = useState({
+    email: { error: false, message: "" },
+    password: { error: false, message: "" },
   });
-
-  const navigate = useNavigate();
 
   const { handleLogin } = useContext(AuthenticationContext);
 
+  const { data: users } = useFetch("http://localhost:8000/users");
+  const { showToast } = useToast();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const changeEmailHandler = (event) => {
-    const inputEmail = event.target.value;
-    setEmail(inputEmail);
+  const changeEmailHandler = (e) => {
+    setEmail(e.target.value);
   };
 
-  const changePasswordHandler = (event) => {
-    const inputPassword = event.target.value;
-    setPassword(inputPassword);
+  const changePasswordHandler = (e) => {
+    setPassword(e.target.value);
   };
 
-  const submitHandler = (event) => {
-    event.preventDefault();
+  const checkEmailUser = (emailToCheck) => {
+    return users.some((user) => user.email === emailToCheck);
+  };
 
-    if (emailRef.current.value.length === 0) {
+  const checkPasswordUser = (passwordToCheck) => {
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].email === email && users[i].password === passwordToCheck) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    let isValidForm = true;
+
+    if (email.length === 0) {
       emailRef.current.focus();
       setErrors((prevErrors) => ({
         ...prevErrors,
-        email: true,
-        password: false,
+        email: {
+          error: true,
+          message: "Complete este campo para continuar",
+        },
       }));
-      return;
+      isValidForm = false;
+    } else if (!checkEmailUser(email)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: {
+          error: true,
+          message: "",
+        },
+        password: {
+          error: true,
+          message: "",
+        },
+      }));
+      isValidForm = false;
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: {
+          error: false,
+          message: "",
+        },
+      }));
     }
 
     if (password.length === 0) {
       passwordRef.current.focus();
       setErrors((prevErrors) => ({
         ...prevErrors,
-        email: false,
-        password: true,
+        password: {
+          error: true,
+          message: "Complete este campo para continuar",
+        },
       }));
-      return;
+      isValidForm = false;
+    } else if (!checkPasswordUser(password)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        email: {
+          error: true,
+          message: "",
+        },
+        password: {
+          error: true,
+          message: "",
+        },
+      }));
+      isValidForm = false;
+    } else {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: {
+          error: false,
+          message: "",
+        },
+      }));
     }
-    handleLogin(email);
-    navigate("/");
+
+    if (isValidForm) {
+      showToast("Ingresaste correctamente!", true);
+      handleLogin(email);
+      // navigate("/");
+    } else {
+      showToast("Email o contraseña incorrectos", false);
+      setEmail("");
+      setPassword("");
+    }
   };
   return (
     <>
       <div className="w-full max-w-xs">
-        <ToggleTheme />
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={submitHandler}
@@ -66,20 +132,30 @@ const Login = () => {
               Email
             </label>
             <input
-              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" //agregar el color rojo si falta o esta mal con tailwind
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                errors.email.error ? "border-red-500" : ""
+              }`}
               ref={emailRef}
               id="email"
               onChange={changeEmailHandler}
-              type="text"
+              value={email}
+              type="email"
               placeholder="Ingresa Email"
             />
+            {errors.email.error && (
+              <p className="text-red-500 text-xs italic">
+                {errors.email.message}
+              </p>
+            )}
           </div>
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Constraseña
             </label>
             <input
-              className="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" //agregar el color rojo si falta o esta mal con tailwind
+              className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
+                errors.password.error ? "border-red-500" : ""
+              }`}
               ref={passwordRef}
               id="password"
               value={password}
@@ -87,9 +163,11 @@ const Login = () => {
               onChange={changePasswordHandler}
               placeholder="************"
             />
-            <p className="text-red-500 text-xs italic hidden">
-              Please choose a password.
-            </p>
+            {errors.password.error && (
+              <p className="text-red-500 text-xs italic">
+                {errors.password.message}
+              </p>
+            )}
           </div>
           <div className="flex items-start mb-5">
             <div className="flex items-center h-5">
@@ -108,7 +186,7 @@ const Login = () => {
           <div className="flex items-center justify-between">
             <button
               className="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="button"
+              type="submit"
             >
               Sign In
             </button>
