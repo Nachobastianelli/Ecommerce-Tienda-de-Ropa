@@ -20,6 +20,7 @@ const Login = () => {
   const { showToast } = useToast();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
+  let imageUrl = "";
 
   const changeEmailHandler = (e) => {
     setEmail(e.target.value);
@@ -36,6 +37,7 @@ const Login = () => {
   const checkPasswordUser = (passwordToCheck) => {
     for (let i = 0; i < users.length; i++) {
       if (users[i].email === email && users[i].password === passwordToCheck) {
+        imageUrl = users[i].imageUrl;
         return true;
       }
     }
@@ -115,7 +117,7 @@ const Login = () => {
 
     if (isValidForm) {
       showToast("Ingresaste correctamente!", true);
-      handleLogin(email);
+      handleLogin(email, imageUrl);
       navigate("/home");
     } else {
       showToast("Email o contraseña incorrectos", false);

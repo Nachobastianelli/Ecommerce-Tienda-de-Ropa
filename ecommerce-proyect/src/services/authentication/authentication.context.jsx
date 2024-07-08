@@ -12,9 +12,10 @@ export const AuthenticationContextProvider = ({ children }) => {
     setUser(null);
   };
 
-  const handleLogin = (email) => {
-    localStorage.setItem("user", JSON.stringify({ email }));
-    setUser({ email });
+  const handleLogin = (email, imageUrl) => {
+    const userData = { email, imageUrl };
+    localStorage.setItem("user", JSON.stringify(userData));
+    setUser(userData);
   };
 
   return (

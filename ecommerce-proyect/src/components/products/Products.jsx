@@ -2,10 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import ProductsItem from "../productsItem/ProductsItem";
 import DeleteModal from "../deleteModal/DeleteModal";
 import EditModal from "../editModal/EditModal";
-import { initialProducts } from "../../mocks/Mocks";
 
-const Products = ({ onDelete, onUpdate }) => {
-  const [products, setProducts] = useState(initialProducts);
+const Products = ({ products, onDelete, onUpdate }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState(-1);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -59,8 +57,8 @@ const Products = ({ onDelete, onUpdate }) => {
           onHide={hideEditModalHandler}
           onSave={updateProductsHandler}
         />
-        <div className="flex flex-row flex-wrap mt-24">{productMapped}</div>
       </div>
+      <div className="flex flex-row flex-wrap mt-24">{productMapped}</div>
     </>
   );
 };

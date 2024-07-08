@@ -5,6 +5,7 @@ const EditModal = ({ user, showEditModal, onHide, onSave }) => {
     name: "",
     email: "",
     imageUrl: "",
+    password: "",
     role: "",
   });
 
@@ -17,6 +18,7 @@ const EditModal = ({ user, showEditModal, onHide, onSave }) => {
           user.imageUrl ||
           "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg",
         role: user.role || "",
+        password: user.password || "",
       });
     }
   }, [user]);
@@ -65,6 +67,19 @@ const EditModal = ({ user, showEditModal, onHide, onSave }) => {
               type="email"
               name="email"
               value={formData.email}
+              onChange={handleChange}
+              className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-700">
+              Password
+            </label>
+            <input
+              type="password"
+              name="password"
+              value={formData.password}
               onChange={handleChange}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
               required

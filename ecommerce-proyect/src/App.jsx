@@ -30,19 +30,41 @@ function App() {
     updateData: updateUser,
   } = useFetch("http://localhost:8000/users");
 
+  const {
+    data: products,
+    loading: loadingProducts,
+    error: errorProducts,
+    addData: addProduct,
+    deleteData: deleteProduct,
+    updateData: updateProduct,
+  } = useFetch("http://localhost:8000/products");
+
   const [editingUser, setEditingUser] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { cart } = useCart();
 
   const addUserHandler = (newUser) => {
     addUser(newUser);
   };
 
+  const addProductHandler = (newProduct) => {
+    addProduct(newProduct);
+  };
+
   const deleteUserHandler = (id) => {
     deleteUser(id);
   };
 
+  const deleteProductHandler = (id) => {
+    deleteProduct(id);
+  };
+
   const updateUserHandler = (id, data) => {
     updateUser(id, data);
+  };
+
+  const updateProductHandler = (id, data) => {
+    updateProduct(id, data);
   };
 
   const router = createBrowserRouter([
@@ -68,7 +90,20 @@ function App() {
     },
     {
       path: "/home",
-      element: <Dashboard />,
+      element: (
+        <CartProvider>
+          <Header onCartOpen={() => setIsModalOpen(true)} />
+          <Products
+            products={products}
+            onDelete={deleteProductHandler}
+            onUpdate={updateProductHandler}
+          />
+          <CartModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
+        </CartProvider>
+      ),
     },
     {
       path: "/users",
@@ -97,8 +132,6 @@ function App() {
       element: <NotFound />,
     },
   ]);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return <RouterProvider router={router}></RouterProvider>;
 }
