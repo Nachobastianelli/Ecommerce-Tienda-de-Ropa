@@ -47,12 +47,24 @@ function App() {
 
   const router = createBrowserRouter([
     {
-      path: "/registre",
-      element: <Register/>
+      path: "/register",
+      element: (
+        <>
+          <div className="flex justify-center items-center min-h-screen bg-gray-400">
+            <Register />,
+          </div>
+        </>
+      ),
     },
     {
       path: "/login",
-      element: <Login />,
+      element: (
+        <>
+          <div className="flex justify-center items-center min-h-screen bg-gray-400">
+            <Login />,
+          </div>
+        </>
+      ),
     },
     {
       path: "/home",
@@ -61,11 +73,23 @@ function App() {
     {
       path: "/users",
       element: (
-        <Users
-          users={users}
-          onDelete={deleteUserHandler}
-          onUpdate={updateUserHandler}
-        />
+        <>
+          <div className="container mx-auto p-4">
+            <h1 className="text-2xl font-bold mb-4">User Manager</h1>
+            <NewUser onAddUser={addUserHandler} />
+            {users.length > 0 ? (
+              <Users
+                users={users}
+                onDelete={deleteUserHandler}
+                onUpdate={updateUserHandler}
+              />
+            ) : (
+              <p className="text-center font-bold text-gray-500">
+                No hay ningun usuario cargado!
+              </p>
+            )}
+          </div>
+        </>
       ),
     },
     {
@@ -76,12 +100,7 @@ function App() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  return (
-    <RouterProvider router={router}>
-      <Header/>
-      <Footer/>
-    </RouterProvider>
-  );
+  return <RouterProvider router={router}></RouterProvider>;
 }
 
 export default App;

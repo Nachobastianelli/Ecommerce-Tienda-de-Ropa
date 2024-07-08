@@ -2,6 +2,7 @@ import { useState, useRef, useContext } from "react";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import useFetch from "../../hooks/useFetch";
 import useToast from "../../hooks/useToast";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,8 @@ const Login = () => {
     email: { error: false, message: "" },
     password: { error: false, message: "" },
   });
+
+  const navigate = useNavigate();
 
   const { handleLogin } = useContext(AuthenticationContext);
 
@@ -113,7 +116,7 @@ const Login = () => {
     if (isValidForm) {
       showToast("Ingresaste correctamente!", true);
       handleLogin(email);
-      // navigate("/");
+      navigate("/home");
     } else {
       showToast("Email o contraseña incorrectos", false);
       setEmail("");
@@ -192,9 +195,9 @@ const Login = () => {
             </button>
             <a
               className="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-800"
-              href="#"
+              href="/register"
             >
-              Forgot Password?
+              Sing Up
             </a>
           </div>
         </form>

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import useToast from "../../hooks/useToast";
 import useFetch from "../../hooks/useFetch";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -16,6 +17,7 @@ const Register = () => {
     password: { error: false, message: "" },
     confirmPassword: { error: false, message: "" },
   });
+  const navigate = useNavigate();
 
   const { data: users, addData: addUser } = useFetch(
     "http://localhost:8000/users"
@@ -177,6 +179,8 @@ const Register = () => {
       };
 
       addUser(newUser);
+
+      navigate("/home");
     }
   };
 

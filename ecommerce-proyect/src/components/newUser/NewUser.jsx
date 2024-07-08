@@ -3,6 +3,8 @@ import Alerta from "../alerta/Alerta";
 
 const NewUser = ({ onAddUser }) => {
   const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -11,6 +13,18 @@ const NewUser = ({ onAddUser }) => {
 
   const changeNameHandler = (e) => {
     setName(e.target.value);
+    setTypeError("");
+    setErrorMessage("");
+  };
+
+  const changeSurnameHandler = (e) => {
+    setSurname(e.target.value);
+    setTypeError("");
+    setErrorMessage("");
+  };
+
+  const changePasswordHandler = (e) => {
+    setPassword(e.target.value);
     setTypeError("");
     setErrorMessage("");
   };
@@ -36,7 +50,13 @@ const NewUser = ({ onAddUser }) => {
   const addUser = (e) => {
     e.preventDefault();
 
-    if (name.trim() === "" || email.trim() === "" || role === "") {
+    if (
+      name.trim() === "" ||
+      email.trim() === "" ||
+      role === "" ||
+      password.trim() === "" ||
+      surname.trim() === ""
+    ) {
       setTypeError("Error");
       setErrorMessage("Completa todos los campos para enviar el formulario...");
       return;
@@ -44,8 +64,10 @@ const NewUser = ({ onAddUser }) => {
 
     const newUser = {
       name: name,
+      lastname: surname,
       email: email,
       role: role,
+      password: password,
       imageUrl: imageUrl.length
         ? imageUrl
         : "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg",
@@ -55,6 +77,8 @@ const NewUser = ({ onAddUser }) => {
     setTypeError("Success");
     setErrorMessage("El formulario se envio con exito!");
     setEmail("");
+    setSurname("");
+    setPassword("");
     setName("");
     setRole("");
     setImageUrl("");
@@ -86,6 +110,22 @@ const NewUser = ({ onAddUser }) => {
         <div className="mb-4">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="surname"
+          >
+            Surname
+          </label>
+          <input
+            type="text"
+            name="surname"
+            value={surname}
+            onChange={changeSurnameHandler}
+            placeholder="Enter user surname"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="email"
           >
             Email
@@ -96,6 +136,22 @@ const NewUser = ({ onAddUser }) => {
             value={email}
             onChange={changeEmailHandler}
             placeholder="Enter email address"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            type="text"
+            name="password"
+            value={password}
+            onChange={changePasswordHandler}
+            placeholder="Enter user password"
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
