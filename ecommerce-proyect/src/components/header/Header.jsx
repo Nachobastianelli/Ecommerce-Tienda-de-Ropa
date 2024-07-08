@@ -32,7 +32,6 @@ const Header = ({ username, onCartOpen }) => {
             Inicio
           </a>
 
-          
           <div className="relative inline-block">
             <a
               href="#"
@@ -75,19 +74,22 @@ const Header = ({ username, onCartOpen }) => {
               </div>
             )}
           </div>
-
-          <a
-            href="#"
-            className="relative inline cursor-pointer text-l before:bg-violet-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
-          >
-            Ofertas
-          </a>
           <a
             href="#"
             className="relative inline cursor-pointer text-l before:bg-violet-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
           >
             Contacto
           </a>
+          {user.role === "Admin" && (
+            <button className="px-3 rounded-md bg-green-600 m-auto">
+              <a
+                href="/users"
+                className="relative inline cursor-pointer text-white text-l  before:bg-green-700 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
+              >
+                Usuarios
+              </a>
+            </button>
+          )}
         </nav>
 
         <div className="flex items-center space-x-4 gap-6">
@@ -97,15 +99,16 @@ const Header = ({ username, onCartOpen }) => {
           >
             <CartIcon itemsLength={itemsLength} />
           </button>
-
-          <div className="user-container flex items-center">
-            <span className="text-gray-900 dark:text-white">{username}</span>
-            <img
-              src={user.imageUrl}
-              alt="User Avatar"
-              className="ml-2 w-10 h-10 rounded-full border border-gray-300"
-            />
-          </div>
+          {user && (
+            <div className="user-container flex items-center">
+              <span className="text-gray-900 dark:text-white">{username}</span>
+              <img
+                src={user.imageUrl}
+                alt="User Avatar"
+                className="ml-2 w-10 h-10 rounded-full border border-gray-300"
+              />
+            </div>
+          )}
         </div>
       </div>
 

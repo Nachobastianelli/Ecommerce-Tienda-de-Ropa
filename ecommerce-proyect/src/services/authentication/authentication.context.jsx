@@ -12,8 +12,8 @@ export const AuthenticationContextProvider = ({ children }) => {
     setUser(null);
   };
 
-  const handleLogin = (email, imageUrl) => {
-    const userData = { email, imageUrl };
+  const handleLogin = (email, imageUrl, role) => {
+    const userData = { email, imageUrl, role };
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
   };
