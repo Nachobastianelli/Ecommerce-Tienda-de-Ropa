@@ -37,7 +37,7 @@ const DeleteModal = ({ onHide, showDeleteModal, onDelete }) => {
               <span className="sr-only">Close modal</span>
             </button>
             <div className="p-4 md:p-5 text-center">
-              <span className="text-9xl">🐱‍🐉</span>{" "}
+              <span className="text-9xl">😭</span>{" "}
               {/* ↑↑↑ Modificar ESTA ↑↑↑ linea para cambiar el icono antes de la entrega*/}
               <h3 className="mb-5 mt-3 text-lg font-normal text-gray-500 dark:text-gray-400">
                 ¿Está seguro que desea eliminar el usuario?

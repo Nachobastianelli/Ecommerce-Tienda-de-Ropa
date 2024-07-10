@@ -9,7 +9,7 @@ const useToast = () => {
 
         Toastify({
             text: message,
-            duration: 3000,
+            duration: 1000,
             gravity: "top",
             position: "right",
             style: {
