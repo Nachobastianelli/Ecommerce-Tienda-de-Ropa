@@ -29,7 +29,7 @@ const Header = ({ username, onCartOpen }) => {
           </span>
         </div>
         <nav className="flex space-x-4">
-          <a href="#" className={styleButton}>
+          <a href="/home" className={styleButton}>
             Inicio
           </a>
 
