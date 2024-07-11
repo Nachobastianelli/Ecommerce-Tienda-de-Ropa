@@ -22,6 +22,7 @@ import Footer from "./components/footer/Footer";
 import Register from "./components/register/Register";
 import Protected from "./routes/Protected";
 import UserAdmin from "./components/userAdmin/UserAdmin";
+import ProductDetails from "./components/productDetails/ProductDetails";
 
 function App() {
   const {
@@ -111,6 +112,18 @@ function App() {
             onClose={() => setIsModalOpen(false)}
           />
         </CartProvider>
+      ),
+    },
+    {
+      path: "/home/:id",
+      element: (
+        <>
+          <Header />
+          <div className="flex justify-center items-center bg-gray-100">
+            <ProductDetails />
+          </div>
+          <Footer />
+        </>
       ),
     },
     {

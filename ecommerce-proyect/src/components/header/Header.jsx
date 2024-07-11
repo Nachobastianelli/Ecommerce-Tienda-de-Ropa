@@ -22,10 +22,10 @@ const Header = ({ username, onCartOpen }) => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-            WAIKIKI
+            <a href="/home">WAIKIKI</a>
           </h1>
           <span className="ml-2 text-gray-600 dark:text-gray-300">
-            | Indumentaria
+            <a href="/home">| Indumentaria</a>
           </span>
         </div>
         <nav className="flex space-x-4">
