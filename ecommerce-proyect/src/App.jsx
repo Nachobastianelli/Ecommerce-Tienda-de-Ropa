@@ -22,6 +22,7 @@ import Footer from "./components/footer/Footer";
 import Register from "./components/register/Register";
 import Protected from "./routes/Protected";
 import UserAdmin from "./components/userAdmin/UserAdmin";
+import ProductDetails from "./components/productDetails/ProductDetails";
 
 function App() {
   const {
@@ -114,6 +115,18 @@ function App() {
       ),
     },
     {
+      path: "/home/:id",
+      element: (
+        <>
+          <Header />
+          <div className="flex justify-center items-center bg-gray-100">
+            <ProductDetails />
+          </div>
+          <Footer />
+        </>
+      ),
+    },
+    {
       path: "/users",
       element: (
         <Protected>
@@ -124,6 +137,14 @@ function App() {
             onUpdateUser={updateUserHandler}
           />
         </Protected>
+      ),
+    },
+    {
+      path: "/new-user",
+      element: (
+        <div className="flex justify-center items-center min-h-screen bg-gray-400">
+          <NewUser onAddUser={addUserHandler} />
+        </div>
       ),
     },
     {
