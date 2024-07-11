@@ -1,10 +1,26 @@
 import React, { useContext, useState } from "react";
 import { AddToCartIcon } from "../../icons/Icons";
 import { CartContext } from "../../services/cartContext/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductsItem = ({ product }) => {
   const { addToCart } = useContext(CartContext);
   const [quantity, setQuantity] = useState(1);
+
+  const navigate = useNavigate();
+
+  const clickHandler = () => {
+    navigate(`/home/${product.id}`, {
+      state: {
+        product: {
+          name: product.name,
+          description: product.description,
+          imageUrl: product.imageUrl,
+          price: product.price,
+        },
+      },
+    });
+  };
 
   const handleAddToCart = () => {
     if (quantity > 0) {
@@ -16,8 +32,9 @@ const ProductsItem = ({ product }) => {
     <div className="mx-auto mt-11 w-80 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
       <img
         src={product.imageUrl}
-        className="h-56 w-full object-cover object-center"
+        className="h-56 w-full object-cover object-center cursor-pointer"
         alt="Imagen del Producto"
+        onClick={clickHandler}
       />
       <div className="flex flex-row justify-between items-center">
         <div className="p-4">
