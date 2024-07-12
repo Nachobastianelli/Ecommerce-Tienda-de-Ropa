@@ -10,7 +10,6 @@ import Users from "./components/users/Users";
 import Login from "./components/login/Login";
 import NotFound from "./routes/NotFound";
 import { useEffect, useState } from "react";
-import Dashboard from "./components/dashboard/Dashboard";
 import { useCart } from "./hooks/useCart";
 import NewUser from "./components/newUser/NewUser";
 import useFetch from "./hooks/useFetch";
@@ -24,6 +23,7 @@ import Protected from "./routes/Protected";
 import UserAdmin from "./components/userAdmin/UserAdmin";
 import ProductDetails from "./components/productDetails/ProductDetails";
 import NewProduct from "./components/newProduct/NewProduct";
+import { AuthenticationContextProvider } from "./services/authentication/authentication.context";
 
 function App() {
   const {
@@ -103,7 +103,7 @@ function App() {
         <>
           <Header />
           <div className="flex items-center justify-center flex-col bg-gray-100 mt-24 mx-12 rounded-xl">
-            <h1 className="text-indigo-600 text-3xl mt-14"> New Product</h1>
+            <h1 className="text-indigo-600 text-3xl mt-12"> New Product</h1>
             <NewProduct onAddProduct={addProductHandler} />
           </div>
           <Footer />
@@ -125,6 +125,7 @@ function App() {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
           />
+          <Footer />
         </CartProvider>
       ),
     },
@@ -143,14 +144,14 @@ function App() {
     {
       path: "/users",
       element: (
-        <Protected>
-          <UserAdmin
-            users={users}
-            onAddUser={addUserHandler}
-            onDeleteUser={deleteUserHandler}
-            onUpdateUser={updateUserHandler}
-          />
-        </Protected>
+        //<Protected>
+        <UserAdmin
+          users={users}
+          onAddUser={addUserHandler}
+          onDeleteUser={deleteUserHandler}
+          onUpdateUser={updateUserHandler}
+        />
+        //</Protected>
       ),
     },
     {
@@ -159,7 +160,11 @@ function App() {
     },
   ]);
 
-  return <RouterProvider router={router}></RouterProvider>;
+  return (
+    <AuthenticationContextProvider>
+      <RouterProvider router={router} />
+    </AuthenticationContextProvider>
+  );
 }
 
 export default App;

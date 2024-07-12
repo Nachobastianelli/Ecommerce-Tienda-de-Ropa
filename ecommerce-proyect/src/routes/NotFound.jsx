@@ -4,14 +4,14 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   const goBackLoginHandler = () => {
-    navigate("/login");
+    navigate("/home");
   };
 
   return (
     <div className="text-center mt-3">
       <h2> ¡Ups! La página solicitada no fue encontrada</h2>
       <button className="text-center" onClick={goBackLoginHandler}>
-        Volver a iniciar sesión
+        Volver a la pagina principal
       </button>
     </div>
   );

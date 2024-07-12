@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import ProductsItem from "../productsItem/ProductsItem";
-import DeleteModal from "../deleteModal/DeleteModal";
-import EditModal from "../editModal/EditModal";
+import EditProductModal from "../editProductModal/EditProductModal";
+import DeleteProductModal from "../deleteProductModal/DeleteProductModal";
 
 const Products = ({ products, onDelete, onUpdate }) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -40,18 +40,23 @@ const Products = ({ products, onDelete, onUpdate }) => {
   };
 
   const productMapped = products.map((product) => (
-    <ProductsItem key={product.id} product={product}  />
+    <ProductsItem
+      key={product.id}
+      product={product}
+      onShowModal={showModalHandler}
+      onEdit={() => showEditModalHandler(product)}
+    />
   ));
 
   return (
     <>
       <div className="mt-4">
-        <DeleteModal
+        <DeleteProductModal
           onDelete={deleteProductHandler}
           showDeleteModal={showDeleteModal}
           onHide={hideModalHandler}
         />
-        <EditModal
+        <EditProductModal
           product={productToEdit}
           showEditModal={showEditModal}
           onHide={hideEditModalHandler}

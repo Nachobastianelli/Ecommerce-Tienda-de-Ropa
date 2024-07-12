@@ -5,7 +5,17 @@ import { AuthenticationContext } from "../services/authentication/authentication
 const Protected = () => {
   const { user } = useContext(AuthenticationContext);
 
-  if (!user || user.role !== "Admin") return <Navigate to="/" replace />;
+  if (!user) {
+    console.log("Usuario no autenticado, redirigiendo a Home");
+    return <Navigate to="/" replace />;
+  }
+
+  if (user.role !== "Admin") {
+    console.log("Usuario no autorizado, redirigiendo a Home");
+    return <Navigate to="/" replace />;
+  }
+
+  console.log("Entraste papu");
   return <Outlet />;
 };
 
