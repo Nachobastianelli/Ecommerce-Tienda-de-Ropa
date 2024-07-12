@@ -40,12 +40,7 @@ const Products = ({ products, onDelete, onUpdate }) => {
   };
 
   const productMapped = products.map((product) => (
-    <ProductsItem
-      key={product.id}
-      product={product}
-      onShowModal={showModalHandler}
-      onEdit={() => showEditModalHandler(product)}
-    />
+    <ProductsItem key={product.id} product={product}  />
   ));
 
   return (
