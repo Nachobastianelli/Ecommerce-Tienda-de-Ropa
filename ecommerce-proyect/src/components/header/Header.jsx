@@ -44,7 +44,7 @@ const Header = ({ username, onCartOpen }) => {
             </a>
             {showDropdown && (
               <div
-                className="absolute left-0 mt-2 w-48 bg-white dark:bg-slate-800 shadow-lg rounded-lg z-10"
+                className="absolute left-0 w-48 bg-white dark:bg-slate-800 shadow-lg rounded-lg z-10"
                 onMouseEnter={() => setShowDropdown(true)}
                 onMouseLeave={() => setShowDropdown(false)}
               >

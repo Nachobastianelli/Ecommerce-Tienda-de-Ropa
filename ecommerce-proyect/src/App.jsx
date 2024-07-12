@@ -7,6 +7,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import Users from "./components/users/Users";
+import UserProfile from "./components/users/UserProfile";
 import Login from "./components/login/Login";
 import NotFound from "./routes/NotFound";
 import { useEffect, useState } from "react";
@@ -96,6 +97,17 @@ function App() {
           </div>
         </>
       ),
+    },
+    {
+      path: "/profile",
+      element: (
+        <>
+          <div className="flex flex-col justify-center items-center min-h-screen bg-gray-400">
+            <h1 className="text-3xl font-bold mb-8">Editar Información del Perfil</h1>
+            <UserProfile />
+          </div>
+        </>
+      )
     },
     {
       path: "/NewProduct",
