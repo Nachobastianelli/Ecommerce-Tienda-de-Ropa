@@ -154,14 +154,6 @@ function App() {
       ),
     },
     {
-      path: "/new-user",
-      element: (
-        <div className="flex justify-center items-center min-h-screen bg-gray-400">
-          <NewUser onAddUser={addUserHandler} />
-        </div>
-      ),
-    },
-    {
       path: "*",
       element: <NotFound />,
     },
