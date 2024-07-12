@@ -23,6 +23,7 @@ import Register from "./components/register/Register";
 import Protected from "./routes/Protected";
 import UserAdmin from "./components/userAdmin/UserAdmin";
 import ProductDetails from "./components/productDetails/ProductDetails";
+import NewProduct from "./components/newProduct/NewProduct";
 
 function App() {
   const {
@@ -97,6 +98,19 @@ function App() {
       ),
     },
     {
+      path: "/NewProduct",
+      element: (
+        <>
+          <Header />
+          <div className="flex items-center justify-center flex-col bg-gray-100 mt-24 mx-12 rounded-xl">
+            <h1 className="text-indigo-600 text-3xl mt-14"> New Product</h1>
+            <NewProduct onAddProduct={addProductHandler} />
+          </div>
+          <Footer />
+        </>
+      ),
+    },
+    {
       path: "/home",
 
       element: (
@@ -137,14 +151,6 @@ function App() {
             onUpdateUser={updateUserHandler}
           />
         </Protected>
-      ),
-    },
-    {
-      path: "/new-user",
-      element: (
-        <div className="flex justify-center items-center min-h-screen bg-gray-400">
-          <NewUser onAddUser={addUserHandler} />
-        </div>
       ),
     },
     {

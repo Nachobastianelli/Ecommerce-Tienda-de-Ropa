@@ -40,7 +40,7 @@ const Products = ({ products, onDelete, onUpdate }) => {
   };
 
   const productMapped = products.map((product) => (
-    <ProductsItem key={product.id} product={product} />
+    <ProductsItem key={product.id} product={product}  />
   ));
 
   return (
