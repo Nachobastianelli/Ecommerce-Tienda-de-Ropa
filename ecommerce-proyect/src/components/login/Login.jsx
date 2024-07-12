@@ -16,7 +16,7 @@ const Login = () => {
 
   const { handleLogin } = useContext(AuthenticationContext);
 
-  const { data: users } = useFetch("http://localhost:8000/users");
+  const { data: users, error, loading } = useFetch("http://localhost:8000/users");
   const { showToast } = useToast();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -36,12 +36,11 @@ const Login = () => {
   };
 
   const checkPasswordUser = (passwordToCheck) => {
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].email === email && users[i].password === passwordToCheck) {
-        imageUrl = users[i].imageUrl;
-        role = users[i].role;
-        return true;
-      }
+    const user = users.find((user) => user.email === email && user.password === passwordToCheck);
+    if (user) {
+      imageUrl = user.imageUrl;
+      role = user.role;
+      return true;
     }
     return false;
   };
@@ -66,7 +65,7 @@ const Login = () => {
         ...prevErrors,
         email: {
           error: true,
-          message: "",
+          message: "Email no registrado",
         },
         password: {
           error: true,
@@ -97,13 +96,9 @@ const Login = () => {
     } else if (!checkPasswordUser(password)) {
       setErrors((prevErrors) => ({
         ...prevErrors,
-        email: {
-          error: true,
-          message: "",
-        },
         password: {
           error: true,
-          message: "",
+          message: "Contraseña incorrecta",
         },
       }));
       isValidForm = false;
@@ -127,6 +122,7 @@ const Login = () => {
       setPassword("");
     }
   };
+
   return (
     <>
       <div className="w-full max-w-xs">
@@ -157,7 +153,7 @@ const Login = () => {
           </div>
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">
-              Constraseña
+              Contraseña
             </label>
             <input
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
@@ -201,7 +197,7 @@ const Login = () => {
               className="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-800"
               href="/register"
             >
-              Sing Up
+              Sign Up
             </a>
           </div>
         </form>
