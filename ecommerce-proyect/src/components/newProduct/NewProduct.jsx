@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useCallback } from "react";
 import useToast from "../../hooks/useToast";
 
 const NewProduct = ({ onAddProduct }) => {
@@ -9,50 +9,53 @@ const NewProduct = ({ onAddProduct }) => {
 
   const { showToast } = useToast();
 
-  const changeNameHandler = (e) => {
+  const changeNameHandler = useCallback((e) => {
     setName(e.target.value);
-  };
+  }, []);
 
-  const changePriceHandler = (e) => {
+  const changePriceHandler = useCallback((e) => {
     setPrice(e.target.value);
-  };
+  }, []);
 
-  const changeImageHandler = (e) => {
+  const changeImageHandler = useCallback((e) => {
     setImageUrl(e.target.value);
-  };
+  }, []);
 
-  const changeDescriptionHandler = (e) => {
+  const changeDescriptionHandler = useCallback((e) => {
     setDescription(e.target.value);
-  };
+  }, []);
 
-  const addProduct = (e) => {
-    e.preventDefault();
+  const addProduct = useCallback(
+    (e) => {
+      e.preventDefault();
 
-    if (
-      name.trim() === "" ||
-      description.trim() === "" ||
-      imageUrl.trim() === "" ||
-      price.trim() === 0 ||
-      price.trim === ""
-    ) {
-      showToast("Complete todos los campos antes de crear un producto!", false);
-      return;
-    }
+      if (
+        name.trim() === "" ||
+        description.trim() === "" ||
+        imageUrl.trim() === "" ||
+        price === 0 ||
+        price === ""
+      ) {
+        showToast("Complete todos los campos antes de crear un producto!", false);
+        return;
+      }
 
-    const newProduct = {
-      name,
-      description,
-      imageUrl,
-      price,
-    };
+      const newProduct = {
+        name,
+        description,
+        imageUrl,
+        price,
+      };
 
-    onAddProduct(newProduct);
-    showToast("El producto se creo correctamente!", true);
-    setName("");
-    setDescription("");
-    setImageUrl("");
-    setPrice(0.0);
-  };
+      onAddProduct(newProduct);
+      showToast("El producto se creó correctamente!", true);
+      setName("");
+      setDescription("");
+      setImageUrl("");
+      setPrice(0.0);
+    },
+    [name, description, imageUrl, price, onAddProduct, showToast]
+  );
 
   return (
     <div className="mx-auto mt-11 w-80 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">

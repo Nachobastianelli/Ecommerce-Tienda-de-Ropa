@@ -1,14 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useMemo } from "react";
 import { CartContext } from "../../services/cartContext/CartContext";
 
 const CartModal = ({ isOpen, onClose }) => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
 
-  const calculateTotal = () => {
+  // Utilizamos useMemo para memoizar el cálculo del total del carrito
+  const calculateTotal = useMemo(() => {
     return cart
       .reduce((acc, item) => acc + item.price * item.quantity, 0)
       .toFixed(2);
-  };
+  }, [cart]);
 
   return (
     <>
@@ -61,7 +62,7 @@ const CartModal = ({ isOpen, onClose }) => {
             </ul>
             <div className="mt-6">
               <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white">
-                Total: ${calculateTotal()}
+                Total: ${calculateTotal}
               </h3>
             </div>
             <div className="mt-8 flex justify-end space-x-4">
@@ -72,23 +73,23 @@ const CartModal = ({ isOpen, onClose }) => {
                 Cerrar
               </button>
               <button
-                disabled={cart.length === 0 || calculateTotal() === "0.00"}
+                disabled={cart.length === 0 || calculateTotal === "0.00"}
                 onClick={() => {
                   clearCart();
                   alert("Compra realizada");
                 }}
                 className={`bg-blue-600 text-white px-5 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 ease-out
-    ${
-      cart.length === 0 || calculateTotal() === "0.00"
-        ? "opacity-50 cursor-not-allowed"
-        : "hover:bg-blue-700"
-    }
-  `}
+                ${
+                  cart.length === 0 || calculateTotal === "0.00"
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-blue-700"
+                }
+              `}
                 style={{
                   opacity:
-                    cart.length === 0 || calculateTotal() === "0.00" ? 0.5 : 1,
+                    cart.length === 0 || calculateTotal === "0.00" ? 0.5 : 1,
                   pointerEvents:
-                    cart.length === 0 || calculateTotal() === "0.00"
+                    cart.length === 0 || calculateTotal === "0.00"
                       ? "none"
                       : "auto",
                 }}
