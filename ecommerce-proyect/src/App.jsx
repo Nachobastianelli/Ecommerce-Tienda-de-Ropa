@@ -103,7 +103,7 @@ function App() {
         <>
           <Header />
           <div className="flex items-center justify-center flex-col bg-gray-100 mt-24 mx-12 rounded-xl">
-            <h1 className="text-indigo-600 text-3xl mt-12"> New Product</h1>
+            <h1 className="text-indigo-600 text-3xl mt-14"> New Product</h1>
             <NewProduct onAddProduct={addProductHandler} />
           </div>
           <Footer />
