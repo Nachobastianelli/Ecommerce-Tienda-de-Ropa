@@ -15,7 +15,7 @@ const Protected = () => {
     return <Navigate to="/" replace />;
   }
 
-  console.log("Entraste papu");
+  console.log("Entraste loquita");
   return <Outlet />;
 };
 

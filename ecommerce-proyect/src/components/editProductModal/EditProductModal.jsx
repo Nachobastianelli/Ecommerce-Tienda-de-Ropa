@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { CartContext } from "../../services/cartContext/CartContext";
 
 const EditProductModal = ({ product, showEditModal, onHide, onSave }) => {
   const [formData, setFormData] = useState({
@@ -7,6 +8,8 @@ const EditProductModal = ({ product, showEditModal, onHide, onSave }) => {
     imageUrl: "",
     description: "",
   });
+
+  const { clearCart } = useContext(CartContext);
 
   useEffect(() => {
     if (product) {
@@ -29,7 +32,7 @@ const EditProductModal = ({ product, showEditModal, onHide, onSave }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    clearCart();
     onSave(product.id, formData);
   };
 
