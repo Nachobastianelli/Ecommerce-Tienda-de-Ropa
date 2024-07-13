@@ -1,9 +1,9 @@
 import React, { useContext, useMemo } from "react";
 import { CartContext } from "../../services/cartContext/CartContext";
-
+import { useNavigate } from "react-router-dom";
 const CartModal = ({ isOpen, onClose }) => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
-
+  const navigate = useNavigate();
   // Utilizamos useMemo para memoizar el cálculo del total del carrito
   const calculateTotal = useMemo(() => {
     return cart
@@ -75,8 +75,7 @@ const CartModal = ({ isOpen, onClose }) => {
               <button
                 disabled={cart.length === 0 || calculateTotal === "0.00"}
                 onClick={() => {
-                  clearCart();
-                  alert("Compra realizada");
+                  navigate("/payments");
                 }}
                 className={`bg-blue-600 text-white px-5 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 ease-out
                 ${

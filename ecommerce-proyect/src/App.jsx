@@ -25,6 +25,9 @@ import UserAdmin from "./components/userAdmin/UserAdmin";
 import ProductDetails from "./components/productDetails/ProductDetails";
 import NewProduct from "./components/newProduct/NewProduct";
 import { AuthenticationContextProvider } from "./services/authentication/authentication.context";
+import CreditCardInfo from "./components/creditCardInfo/CreditCardInfo";
+import InfoPayments from "./components/infoPayments/InfoPayments";
+import PaymentsSeccion from "./components/paymentsSeccion/PaymentsSeccion";
 
 function App() {
   const {
@@ -103,11 +106,13 @@ function App() {
       element: (
         <>
           <div className="flex flex-col justify-center items-center min-h-screen bg-gray-400">
-            <h1 className="text-3xl font-bold mb-8">Editar Información del Perfil</h1>
+            <h1 className="text-3xl font-bold mb-8">
+              Editar Información del Perfil
+            </h1>
             <UserProfile />
           </div>
         </>
-      )
+      ),
     },
     {
       path: "/NewProduct",
@@ -155,16 +160,22 @@ function App() {
     },
     {
       path: "/users",
-      element: (
-        //<Protected>
-        <UserAdmin
-          users={users}
-          onAddUser={addUserHandler}
-          onDeleteUser={deleteUserHandler}
-          onUpdateUser={updateUserHandler}
-        />
-        //</Protected>
-      ),
+      element: <Protected />,
+      Children: {
+        path: "/users",
+        element: (
+          <UserAdmin
+            users={users}
+            onAddUser={addUserHandler}
+            onDeleteUser={deleteUserHandler}
+            onUpdateUser={updateUserHandler}
+          />
+        ),
+      },
+    },
+    {
+      path: "/payments",
+      element: <PaymentsSeccion />,
     },
     {
       path: "*",
