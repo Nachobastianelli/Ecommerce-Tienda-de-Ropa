@@ -5,18 +5,20 @@ import useToast from "../../hooks/useToast";
 
 const UserProfile = () => {
   const { user, updateUser } = useContext(AuthenticationContext);
-  const { data: users, updateData: updateUserList } = useFetch("http://localhost:8000/users");
+  const { data: users, updateData: updateUserList } = useFetch(
+    "http://localhost:8000/users"
+  );
   const { showToast } = useToast();
 
   const [editedUser, setEditedUser] = useState({
-    name: user?.name || '',
-    lastName: user?.lastName || '',
-    email: user?.email || '',
+    name: user?.name || "",
+    lastName: user?.lastName || "",
+    email: user?.email || "",
     password: "",
     confirmPassword: "",
   });
 
-   // Maneja el cambio en los campos del formulario
+  // Maneja el cambio en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setEditedUser((prev) => ({
@@ -61,19 +63,24 @@ const UserProfile = () => {
 
     // Limpiar campos de input
     setEditedUser({
-      name: '',
-      lastName: '',
-      email: '',
-      password: '',
-      confirmPassword: '',
+      name: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
     });
   };
 
   return (
     <div className="w-full max-w-xs">
-      <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+      <form
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        onSubmit={handleSubmit}
+      >
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Name</label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Name
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="name"
@@ -84,7 +91,9 @@ const UserProfile = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Last Name</label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Last Name
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="lastName"
@@ -95,7 +104,9 @@ const UserProfile = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Email</label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Email
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="email"
@@ -106,7 +117,9 @@ const UserProfile = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">New Password</label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            New Password
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="password"
@@ -117,7 +130,9 @@ const UserProfile = () => {
           />
         </div>
         <div className="mb-6">
-          <label className="block text-gray-700 text-sm font-bold mb-2">Confirm New Password</label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
+            Confirm New Password
+          </label>
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             name="confirmPassword"

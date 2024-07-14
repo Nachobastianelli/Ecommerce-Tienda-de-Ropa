@@ -4,7 +4,7 @@ const NotFound = () => {
   const navigate = useNavigate();
 
   const goBackLoginHandler = () => {
-    navigate("/home");
+    navigate("/init");
   };
 
   return (

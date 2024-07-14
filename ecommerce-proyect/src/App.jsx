@@ -28,6 +28,8 @@ import { AuthenticationContextProvider } from "./services/authentication/authent
 import CreditCardInfo from "./components/creditCardInfo/CreditCardInfo";
 import InfoPayments from "./components/infoPayments/InfoPayments";
 import PaymentsSeccion from "./components/paymentsSeccion/PaymentsSeccion";
+import Init from "./components/init/Init";
+import Message from "./components/message/Message";
 
 function App() {
   const {
@@ -176,6 +178,15 @@ function App() {
     {
       path: "/payments",
       element: <PaymentsSeccion />,
+    },
+    {
+      path: "/init",
+      element: (
+        <div className="flex flex-col h-screen overflow-hidden">
+          <Message />
+          <Init />
+        </div>
+      ),
     },
     {
       path: "*",
