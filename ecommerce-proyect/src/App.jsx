@@ -91,7 +91,7 @@ function App() {
     },
     {
       path: "/",
-      element: <Navigate to="/home" replace />,
+      element: <Navigate to="/init" replace />,
     },
     {
       path: "/login",
@@ -162,18 +162,15 @@ function App() {
     },
     {
       path: "/users",
-      element: <Protected />,
-      Children: {
-        path: "/users",
-        element: (
-          <UserAdmin
-            users={users}
-            onAddUser={addUserHandler}
-            onDeleteUser={deleteUserHandler}
-            onUpdateUser={updateUserHandler}
-          />
-        ),
-      },
+
+      element: (
+        <UserAdmin
+          users={users}
+          onAddUser={addUserHandler}
+          onDeleteUser={deleteUserHandler}
+          onUpdateUser={updateUserHandler}
+        />
+      ),
     },
     {
       path: "/payments",

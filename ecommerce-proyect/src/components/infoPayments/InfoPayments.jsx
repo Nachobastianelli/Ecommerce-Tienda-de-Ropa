@@ -7,7 +7,6 @@ const InfoPayments = () => {
   const { cart, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
   const { showToast } = useToast();
-
   const [cartStorage, setCartStorege] = useState([]);
 
   const clickHandler = () => {
@@ -25,7 +24,7 @@ const InfoPayments = () => {
 
   return (
     <>
-      <div className="max-w-4xl mx-8 mt-8 p-8 bg-white rounded-xl shadow-lg">
+      <div className="max-w-xl  mx-8 mt-8 p-8 bg-white rounded-xl shadow-lg">
         <ul className="divide-y divide-gray-200">
           {cart &&
             cart.map((product) => (
@@ -60,20 +59,6 @@ const InfoPayments = () => {
             <h3 className="text-2xl font-extrabold text-gray-900">
               Total: ${calculateTotal}
             </h3>
-          </div>
-          <div className="flex gap-2">
-            <button
-              onClick={() => navigate("/home")}
-              className="py-2 px-4 bg-blue-500 rounded-lg flex justify-center items-center text-xl text-white cursor-pointer my-2"
-            >
-              Home
-            </button>
-            <button
-              onClick={clickHandler}
-              className="py-2 px-4 bg-indigo-500 rounded-lg flex justify-center items-center text-xl text-white cursor-pointer my-2"
-            >
-              Comprar
-            </button>
           </div>
         </div>
       </div>

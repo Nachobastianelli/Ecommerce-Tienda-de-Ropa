@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CreditCard from "../creditCard/CreditCard";
 
-const CreditCardInfo = () => {
+const CreditCardInfo = ({ setIsValid }) => {
   const [name, setName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [dateValid, setDateValid] = useState("");
@@ -20,6 +20,19 @@ const CreditCardInfo = () => {
         .trim()
     );
   };
+
+  useEffect(() => {
+    const isValid = () => {
+      return (
+        name.trim() !== "" &&
+        cardNumber.replace(/\s/g, "").length === 16 &&
+        cvv.length === 3 &&
+        dateExpiry.trim().length === 5 &&
+        dateValid.trim().length === 5
+      );
+    };
+    setIsValid(isValid());
+  }, [name, cardNumber, dateValid, dateExpiry, cvv, setIsValid]);
 
   const changeDateValidHandler = (e) => {
     let inputValue = e.target.value.replace(/\D/g, "");
