@@ -44,7 +44,7 @@ const Header = ({ username, onCartOpen }) => {
             </a>
             {showDropdown && (
               <div
-                className="absolute left-0 w-48 bg-white dark:bg-slate-800 shadow-lg rounded-lg z-10"
+                className="absolute left-0 w-48 bg-gray-100 dark:bg-slate-800 shadow-lg rounded-lg z-10"
                 onMouseEnter={() => setShowDropdown(true)}
                 onMouseLeave={() => setShowDropdown(false)}
               >
@@ -56,19 +56,19 @@ const Header = ({ username, onCartOpen }) => {
                 </Link>
                 <Link
                   to="/buzos"
-                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700"
+                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2"
                 >
                   Buzos
                 </Link>
                 <Link
                   to="/zapatillas"
-                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700"
+                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2"
                 >
                   Zapatillas
                 </Link>
                 <Link
                   to="/accesorios"
-                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700"
+                  className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2"
                 >
                   Accesorios
                 </Link>
@@ -113,15 +113,21 @@ const Header = ({ username, onCartOpen }) => {
               />
               {showDropdownImg && (
                 <div
-                  className="absolute left-0 mt-12 w-48 bg-white dark:bg-slate-800 shadow-lg rounded-lg z-10"
+                  className="absolute left-0 mt-40 w-48 bg-gray-100 dark:bg-slate-800 shadow-lg rounded-lg z-10"
                   onMouseEnter={() => setShowDropdownImg(true)}
                   onMouseLeave={() => setShowDropdownImg(false)}
                 >
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700"
+                    className="block w-full text-left px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 "
                   >
                     Cerrar sesión
+                  </button>
+                  <button className="block w-full text-left px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2">
+                    Editar usuario
+                  </button>
+                  <button className="block w-full text-left px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2">
+                    Eliminar usuario
                   </button>
                 </div>
               )}

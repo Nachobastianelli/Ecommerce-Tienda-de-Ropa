@@ -120,7 +120,11 @@ function App() {
       path: "/NewProduct",
       element: (
         <>
-          <Header />
+          <Header onCartOpen={() => setIsModalOpen(true)} />
+          <CartModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
           <div className="flex items-center justify-center flex-col bg-gray-100 mt-24 mx-12 rounded-xl">
             <h1 className="text-indigo-600 text-3xl mt-12"> New Product</h1>
             <NewProduct onAddProduct={addProductHandler} />
@@ -133,7 +137,7 @@ function App() {
       path: "/home",
 
       element: (
-        <CartProvider>
+        <>
           <Header onCartOpen={() => setIsModalOpen(true)} />
           <Products
             products={products}
@@ -145,14 +149,18 @@ function App() {
             onClose={() => setIsModalOpen(false)}
           />
           <Footer />
-        </CartProvider>
+        </>
       ),
     },
     {
       path: "/home/:id",
       element: (
         <>
-          <Header />
+          <Header onCartOpen={() => setIsModalOpen(true)} />
+          <CartModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+          />
           <div className="flex justify-center items-center bg-gray-100">
             <ProductDetails />
           </div>
@@ -162,14 +170,15 @@ function App() {
     },
     {
       path: "/users",
-
       element: (
-        <UserAdmin
-          users={users}
-          onAddUser={addUserHandler}
-          onDeleteUser={deleteUserHandler}
-          onUpdateUser={updateUserHandler}
-        />
+        <Protected>
+          <UserAdmin
+            users={users}
+            onAddUser={addUserHandler}
+            onDeleteUser={deleteUserHandler}
+            onUpdateUser={updateUserHandler}
+          />
+        </Protected>
       ),
     },
     {
@@ -192,9 +201,11 @@ function App() {
   ]);
 
   return (
-    <AuthenticationContextProvider>
-      <RouterProvider router={router} />
-    </AuthenticationContextProvider>
+    <CartProvider>
+      <AuthenticationContextProvider>
+        <RouterProvider router={router} />
+      </AuthenticationContextProvider>
+    </CartProvider>
   );
 }
 
