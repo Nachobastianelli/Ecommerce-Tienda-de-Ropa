@@ -48,7 +48,7 @@ const PaymentsSeccion = () => {
                 onClick={clickHandler}
                 className="py-2 px-4 bg-indigo-500 rounded-lg flex justify-center items-center text-xl text-white cursor-pointer my-2"
               >
-                Comprar
+                Buy
               </button>
             </div>
           </div>

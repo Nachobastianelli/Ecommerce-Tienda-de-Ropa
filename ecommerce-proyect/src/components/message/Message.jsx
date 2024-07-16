@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 
 const Message = () => {
   const texto = [
-    "15% De descuento abonando en transferencia",
-    "Envíos gratis a partir de $100.000",
-    "Hasta 9 cuotas sin interés",
+    "15% Discount by paying in transfer",
+    "Free shipping over $100.000",
+    "Up to 9 interest-free installments",
   ];
 
   const [currentTextIndex, setCurrentTextIndex] = useState(0);

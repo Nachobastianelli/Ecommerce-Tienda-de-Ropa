@@ -48,7 +48,7 @@ const EditModal = ({ user, showEditModal, onHide, onSave }) => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
-              Nombre
+              Name
             </label>
             <input
               type="text"
@@ -87,7 +87,7 @@ const EditModal = ({ user, showEditModal, onHide, onSave }) => {
           </div>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
-              URL de la Imagen
+              Image URL
             </label>
             <input
               type="text"
@@ -109,7 +109,7 @@ const EditModal = ({ user, showEditModal, onHide, onSave }) => {
               required
             >
               <option value="" disabled>
-                Seleccionar rol
+                Select rol
               </option>
               <option value="Admin">Admin</option>
               <option value="Editor">Editor</option>
@@ -122,13 +122,13 @@ const EditModal = ({ user, showEditModal, onHide, onSave }) => {
               onClick={onHide}
               className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded mr-2"
             >
-              Cancelar
+              Cancel
             </button>
             <button
               type="submit"
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
             >
-              Guardar
+              Save
             </button>
           </div>
         </form>

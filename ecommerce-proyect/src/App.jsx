@@ -110,7 +110,7 @@ function App() {
         <>
           <div className="flex flex-col justify-center items-center min-h-screen bg-gray-400">
             <h1 className="text-3xl font-bold mb-8">
-              Editar Información del Perfil
+              Edit Profile Information
             </h1>
             <UserProfile />
           </div>

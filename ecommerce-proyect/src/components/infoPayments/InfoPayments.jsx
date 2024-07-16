@@ -57,7 +57,7 @@ const InfoPayments = () => {
         <div className="mt-6 text-right flex flex-col justify-end items-end">
           <div className="my-5">
             <h3 className="text-2xl font-extrabold text-gray-900">
-              Total: ${calculateTotal}
+              Total Price: ${calculateTotal}
             </h3>
           </div>
         </div>

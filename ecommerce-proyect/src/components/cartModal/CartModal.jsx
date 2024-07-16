@@ -35,7 +35,7 @@ const CartModal = ({ isOpen, onClose }) => {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
             <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-lg transform transition-all duration-300 ease-out">
               <h2 className="text-3xl font-extrabold mb-6 text-gray-900 dark:text-white">
-                Carrito de Compras
+                Shopping Cart
               </h2>
               <ul className="divide-y divide-gray-200 dark:divide-gray-700">
                 {cart.map((product) => (
@@ -73,14 +73,14 @@ const CartModal = ({ isOpen, onClose }) => {
                       onClick={() => removeFromCart(product.id)}
                       className="ml-6 bg-red-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 ease-out"
                     >
-                      Eliminar
+                      Delete
                     </button>
                   </li>
                 ))}
               </ul>
               <div className="mt-6">
                 <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white">
-                  Total: ${calculateTotal}
+                  Total price: ${calculateTotal}
                 </h3>
               </div>
               <div className="mt-8 flex justify-end space-x-4">
@@ -88,17 +88,16 @@ const CartModal = ({ isOpen, onClose }) => {
                   onClick={onClose}
                   className="bg-gray-700 text-white px-5 py-3 rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200 ease-out"
                 >
-                  Cerrar
+                  Close
                 </button>
                 <button
                   disabled={cart.length === 0 || calculateTotal === "0.00"}
                   onClick={clickHandler}
                   className={`bg-blue-600 text-white px-5 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 ease-out
-                ${
-                  cart.length === 0 || calculateTotal === "0.00"
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:bg-blue-700"
-                }
+                ${cart.length === 0 || calculateTotal === "0.00"
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:bg-blue-700"
+                    }
               `}
                   style={{
                     opacity:
@@ -109,7 +108,7 @@ const CartModal = ({ isOpen, onClose }) => {
                         : "auto",
                   }}
                 >
-                  Comprar
+                  Buy
                 </button>
               </div>
             </div>

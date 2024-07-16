@@ -10,13 +10,13 @@ const ProductDetails = () => {
   if (!product) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-        <div className="text-3xl mb-4">Producto no encontrado 😭</div>
+        <div className="text-3xl mb-4"> Product not found 😭</div>
         <div>
           <a
             href="/home"
             className="py-2 px-4 flex items-center justify-center bg-indigo-500 text-white rounded-lg"
           >
-            Volver al menu principal
+            Back to Main Menu
           </a>
         </div>
       </div>

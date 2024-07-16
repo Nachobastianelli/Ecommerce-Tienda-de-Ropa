@@ -143,7 +143,7 @@ const Login = () => {
               onChange={changeEmailHandler}
               value={email}
               type="email"
-              placeholder="Ingresa Email"
+              placeholder="Enter Email"
             />
             {errors.email.error && (
               <p className="text-red-500 text-xs italic">
@@ -153,7 +153,7 @@ const Login = () => {
           </div>
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">
-              Contraseña
+              Password
             </label>
             <input
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
