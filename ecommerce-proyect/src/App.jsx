@@ -125,11 +125,19 @@ function App() {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
           />
-          <div className="flex items-center justify-center flex-col bg-gray-100 mt-24 mx-12 rounded-xl">
-            <h1 className="text-indigo-600 text-3xl mt-12"> New Product</h1>
-            <NewProduct onAddProduct={addProductHandler} />
+          <main className="flex-grow bg-gray-100">
+            <div className="flex items-center justify-center flex-col mt-24 mx-12 rounded-xl p-8 bg-gray-50 shadow-lg">
+              <h1 className="text-indigo-600 text-4xl font-bold mb-8 ">
+                Nuevo Producto
+              </h1>
+              <div className="mb-8">
+                <NewProduct onAddProduct={addProductHandler} />
+              </div>
+            </div>
+          </main>
+          <div className="mt-6 bg-gray-300">
+            <Footer />
           </div>
-          <Footer />
         </>
       ),
     },
@@ -139,11 +147,16 @@ function App() {
       element: (
         <>
           <Header onCartOpen={() => setIsModalOpen(true)} />
-          <Products
-            products={products}
-            onDelete={deleteProductHandler}
-            onUpdate={updateProductHandler}
-          />
+
+          <div className="bg-gray-50">
+            <div className="w-2/3 m-auto">
+              <Products
+                products={products}
+                onDelete={deleteProductHandler}
+                onUpdate={updateProductHandler}
+              />
+            </div>
+          </div>
           <CartModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}

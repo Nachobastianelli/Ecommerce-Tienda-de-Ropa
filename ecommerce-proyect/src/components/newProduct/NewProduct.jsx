@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from "react";
 import useToast from "../../hooks/useToast";
+import { FiDollarSign, FiImage, FiType } from "react-icons/fi";
+import { MdDescription } from "react-icons/md";
 
 const NewProduct = ({ onAddProduct }) => {
   const [name, setName] = useState("");
@@ -36,7 +38,10 @@ const NewProduct = ({ onAddProduct }) => {
         price === 0 ||
         price === ""
       ) {
-        showToast("Complete todos los campos antes de crear un producto!", false);
+        showToast(
+          "Complete todos los campos antes de crear un producto!",
+          false
+        );
         return;
       }
 
@@ -58,11 +63,11 @@ const NewProduct = ({ onAddProduct }) => {
   );
 
   return (
-    <div className="mx-auto mt-11 w-80 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
-      <form onSubmit={addProduct} className="p-4">
+    <div className="mx-auto mt-11 w-96 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
+      <form onSubmit={addProduct} className="p-6">
         <img
           src={imageUrl || "https://via.placeholder.com/150"}
-          className="h-56 w-full object-cover object-center mb-4"
+          className="h-56 w-full object-cover object-center mb-4 rounded-md"
           alt="Imagen del Producto"
         />
         <div className="mb-4">
@@ -72,14 +77,17 @@ const NewProduct = ({ onAddProduct }) => {
           >
             Nombre
           </label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            onChange={changeNameHandler}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-            placeholder="Nombre del Producto"
-          />
+          <div className="relative mt-1">
+            <input
+              id="name"
+              type="text"
+              value={name}
+              onChange={changeNameHandler}
+              className="block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+              placeholder="Nombre del Producto"
+            />
+            <FiType className="absolute left-3 top-3.5 text-gray-400 dark:text-gray-300" />
+          </div>
         </div>
         <div className="mb-4">
           <label
@@ -88,14 +96,17 @@ const NewProduct = ({ onAddProduct }) => {
           >
             Precio $
           </label>
-          <input
-            id="price"
-            type="number"
-            value={price}
-            onChange={changePriceHandler}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-            placeholder="Precio del Producto"
-          />
+          <div className="relative mt-1">
+            <input
+              id="price"
+              type="number"
+              value={price}
+              onChange={changePriceHandler}
+              className="block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+              placeholder="Precio del Producto"
+            />
+            <FiDollarSign className="absolute left-3 top-3.5 text-gray-400 dark:text-gray-300" />
+          </div>
         </div>
         <div className="mb-4">
           <label
@@ -104,14 +115,17 @@ const NewProduct = ({ onAddProduct }) => {
           >
             Imagen URL
           </label>
-          <input
-            id="imageUrl"
-            type="text"
-            value={imageUrl}
-            onChange={changeImageHandler}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-            placeholder="URL de la Imagen del Producto"
-          />
+          <div className="relative mt-1">
+            <input
+              id="imageUrl"
+              type="text"
+              value={imageUrl}
+              onChange={changeImageHandler}
+              className="block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+              placeholder="URL de la Imagen del Producto"
+            />
+            <FiImage className="absolute left-3 top-3.5 text-gray-400 dark:text-gray-300" />
+          </div>
         </div>
         <div className="mb-4">
           <label
@@ -120,14 +134,17 @@ const NewProduct = ({ onAddProduct }) => {
           >
             Descripción
           </label>
-          <textarea
-            id="description"
-            value={description}
-            onChange={changeDescriptionHandler}
-            className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-            placeholder="Descripción del Producto"
-            rows="3"
-          />
+          <div className="relative mt-1">
+            <textarea
+              id="description"
+              value={description}
+              onChange={changeDescriptionHandler}
+              className="block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
+              placeholder="Descripción del Producto"
+              rows="3"
+            />
+            <MdDescription className="absolute left-3 top-3.5 text-gray-400 dark:text-gray-300" />
+          </div>
         </div>
         <button
           type="submit"
