@@ -3,6 +3,7 @@ import NewUser from "../newUser/NewUser";
 import Users from "../users/Users";
 
 const UserAdmin = ({ users, onAddUser, onDeleteUser, onUpdateUser }) => {
+  console.log("UserAdmin Render");
   return (
     <div className="container mx-auto p-4">
       <div className="flex justify-between">

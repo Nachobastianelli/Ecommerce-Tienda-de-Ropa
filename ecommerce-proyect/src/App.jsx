@@ -30,6 +30,7 @@ import InfoPayments from "./components/infoPayments/InfoPayments";
 import PaymentsSeccion from "./components/paymentsSeccion/PaymentsSeccion";
 import Init from "./components/init/Init";
 import Message from "./components/message/Message";
+import ProtectedEditor from "./routes/ProtectedEditor";
 
 function App() {
   const {
@@ -120,24 +121,26 @@ function App() {
       path: "/NewProduct",
       element: (
         <>
-          <Header onCartOpen={() => setIsModalOpen(true)} />
-          <CartModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-          />
-          <main className="flex-grow bg-gray-100">
-            <div className="flex items-center justify-center flex-col mt-24 mx-12 rounded-xl p-8 bg-gray-50 shadow-lg">
-              <h1 className="text-indigo-600 text-4xl font-bold mb-8 ">
-                Nuevo Producto
-              </h1>
-              <div className="mb-8">
-                <NewProduct onAddProduct={addProductHandler} />
+          <ProtectedEditor>
+            <Header onCartOpen={() => setIsModalOpen(true)} />
+            <CartModal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+            />
+            <main className="flex-grow bg-gray-100">
+              <div className="flex items-center justify-center flex-col mt-24 mx-12 rounded-xl p-8 bg-gray-50 shadow-lg">
+                <h1 className="text-indigo-600 text-4xl font-bold mb-8 ">
+                  Nuevo Producto
+                </h1>
+                <div className="mb-8">
+                  <NewProduct onAddProduct={addProductHandler} />
+                </div>
               </div>
+            </main>
+            <div className="mt-6 bg-gray-300">
+              <Footer />
             </div>
-          </main>
-          <div className="mt-6 bg-gray-300">
-            <Footer />
-          </div>
+          </ProtectedEditor>
         </>
       ),
     },
