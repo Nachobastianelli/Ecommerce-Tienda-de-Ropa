@@ -77,8 +77,12 @@ const useFetch = (url) => {
             })
             .catch((error) => console.error("Error updating data:", error));
     };
+    const getLastId = () => {
+        if (data.length === 0) return 0;
+        return data[0].id;
+    };
 
-    return { data, error, loading, addData, deleteData, updateData };
+    return { data, error, loading, addData, deleteData, updateData, getLastId };
 };
 
 export default useFetch;

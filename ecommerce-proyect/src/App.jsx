@@ -122,7 +122,10 @@ function App() {
       element: (
         <>
           <ProtectedEditor>
-            <Header onCartOpen={() => setIsModalOpen(true)} />
+            <Header
+              onCartOpen={() => setIsModalOpen(true)}
+              onDelete={deleteUserHandler}
+            />
             <CartModal
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
@@ -149,7 +152,11 @@ function App() {
 
       element: (
         <>
-          <Header onCartOpen={() => setIsModalOpen(true)} />
+          <Header
+            onCartOpen={() => setIsModalOpen(true)}
+            onDelete={deleteUserHandler}
+            onUpdate={updateUserHandler}
+          />
 
           <div className="bg-gray-50">
             <div className="w-2/3 m-auto">
@@ -172,7 +179,10 @@ function App() {
       path: "/home/:id",
       element: (
         <>
-          <Header onCartOpen={() => setIsModalOpen(true)} />
+          <Header
+            onCartOpen={() => setIsModalOpen(true)}
+            onDelete={deleteUserHandler}
+          />
           <CartModal
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}

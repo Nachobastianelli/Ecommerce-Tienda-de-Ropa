@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
 
-export const AuthenticationContext = createContext(); //creamos el context
+export const AuthenticationContext = createContext();
 
 const userValue = JSON.parse(localStorage.getItem("user"));
 
@@ -12,8 +12,8 @@ export const AuthenticationContextProvider = ({ children }) => {
     setUser(null);
   };
 
-  const handleLogin = (email, imageUrl, role) => {
-    const userData = { email, imageUrl, role };
+  const handleLogin = (email, imageUrl, role, name, id) => {
+    const userData = { email, imageUrl, role, name, id };
     localStorage.setItem("user", JSON.stringify(userData));
     setUser(userData);
   };

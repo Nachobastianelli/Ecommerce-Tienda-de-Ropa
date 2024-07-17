@@ -1,8 +1,8 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import useToast from "../../hooks/useToast";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
-import { Fondo } from "../../icons/Icons";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -11,6 +11,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const { showToast } = useToast();
+  const { handleLogin } = useContext(AuthenticationContext);
   const [errors, setErrors] = useState({
     name: { error: false, message: "" },
     lastName: { error: false, message: "" },
@@ -23,6 +24,11 @@ const Register = () => {
   const { data: users, addData: addUser } = useFetch(
     "http://localhost:8000/users"
   );
+
+  const getLastId = (users) => {
+    if (!users || users.length === 0) return 0;
+    return Math.max(...users.map((user) => user.id));
+  };
 
   const checkUniqueEmail = (emailToCheck) => {
     return users.some((user) => user.email === emailToCheck);
@@ -180,6 +186,14 @@ const Register = () => {
       };
 
       addUser(newUser);
+      const imageUrl =
+        "https://www.shutterstock.com/image-vector/blank-avatar-photo-place-holder-600nw-1095249842.jpg";
+      const role = "User";
+
+      const lastId = getLastId(users);
+
+      const id = lastId + 1;
+      handleLogin(email, imageUrl, role, name, id);
 
       navigate("/home");
     }
@@ -192,7 +206,6 @@ const Register = () => {
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={submitFormHandler}
         >
-          <Fondo/>
           <div className="flex mb-4 space-x-2">
             <div className="w-1/2">
               <label className="block text-gray-700 text-sm font-bold mb-2">

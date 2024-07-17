@@ -3,7 +3,6 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import useFetch from "../../hooks/useFetch";
 import useToast from "../../hooks/useToast";
 import { useNavigate } from "react-router-dom";
-import { Fondo } from "../../icons/Icons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -17,12 +16,18 @@ const Login = () => {
 
   const { handleLogin } = useContext(AuthenticationContext);
 
-  const { data: users, error, loading } = useFetch("http://localhost:8000/users");
+  const {
+    data: users,
+    error,
+    loading,
+  } = useFetch("http://localhost:8000/users");
   const { showToast } = useToast();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   let imageUrl = "";
   let role = "";
+  let name = "";
+  let id = "";
 
   const changeEmailHandler = (e) => {
     setEmail(e.target.value);
@@ -37,10 +42,14 @@ const Login = () => {
   };
 
   const checkPasswordUser = (passwordToCheck) => {
-    const user = users.find((user) => user.email === email && user.password === passwordToCheck);
+    const user = users.find(
+      (user) => user.email === email && user.password === passwordToCheck
+    );
     if (user) {
       imageUrl = user.imageUrl;
       role = user.role;
+      name = user.name;
+      id = user.id;
       return true;
     }
     return false;
@@ -115,7 +124,7 @@ const Login = () => {
 
     if (isValidForm) {
       showToast("Ingresaste correctamente!", true);
-      handleLogin(email, imageUrl, role);
+      handleLogin(email, imageUrl, role, name, id);
       navigate("/home");
     } else {
       showToast("Email o contraseña incorrectos", false);
@@ -132,7 +141,6 @@ const Login = () => {
           onSubmit={submitHandler}
         >
           <div className="mb-4">
-            <Fondo/>
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Email
             </label>
@@ -145,7 +153,7 @@ const Login = () => {
               onChange={changeEmailHandler}
               value={email}
               type="email"
-              placeholder="Enter Email"
+              placeholder="Ingresa Email"
             />
             {errors.email.error && (
               <p className="text-red-500 text-xs italic">
@@ -155,7 +163,7 @@ const Login = () => {
           </div>
           <div className="mb-6">
             <label className="block text-gray-700 text-sm font-bold mb-2">
-              Password
+              Contraseña
             </label>
             <input
               className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${
