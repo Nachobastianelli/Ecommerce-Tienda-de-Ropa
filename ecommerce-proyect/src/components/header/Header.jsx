@@ -5,6 +5,7 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import { Link } from "react-router-dom";
 import DeleteModalOnlyUsers from "../deleteModalOnlyUsers/DeleteModalOnlyUsers";
 import EditModalOnlyUsers from "../editModalOnlyUsers/EditModalOnlyUsers";
+import useFetch from "../../hooks/useFetch";
 
 const Header = ({ onUpdate, onDelete, onCartOpen }) => {
   const { cart } = useContext(CartContext);
@@ -17,16 +18,17 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
   const [userToEdit, setUserToEdit] = useState(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [showDropdownImg, setShowDropdownImg] = useState(false);
+  const { data: users, error } = useFetch("http://localhost:8000/users");
 
   const userId = user ? user.id : null;
 
-  const clickDeleteHandler = () => {
-    showModalHandler(userId);
-  };
+  const userData = users.find((user) => user.id === userId);
 
-  const showModalHandler = (id) => {
-    setShowDeleteModal(true);
-    setUserIdToDelete(id);
+  const clickDeleteHandler = () => {
+    if (userId) {
+      setUserIdToDelete(userId);
+      setShowDeleteModal(true);
+    }
   };
 
   const hideModalHandler = () => {
@@ -36,9 +38,9 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
 
   const deleteUserHandler = () => {
     if (userIdToDelete) {
-      onDelete(userIdToDelete);
+      onDelete(userIdToDelete); // Envía solo el ID del usuario
+      hideModalHandler();
     }
-    hideModalHandler();
   };
 
   const showEditModalHandler = (user) => {
@@ -52,12 +54,16 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
   };
 
   const updateUserHandler = (id, updatedData) => {
-    onUpdate(id, updatedData);
+    onUpdate(id, updatedData); // Envía solo el ID y los datos actualizados
     hideEditModalHandler();
   };
 
   const styleButton =
     "relative inline cursor-pointer text-l before:bg-violet-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100";
+
+  if (error) {
+    return <div>Error al cargar los datos de los usuarios</div>;
+  }
 
   return (
     <>
@@ -67,7 +73,7 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
         onHide={hideModalHandler}
       />
       <EditModalOnlyUsers
-        user={userToEdit}
+        userInfo={userData}
         showEditModal={showEditModal}
         onHide={hideEditModalHandler}
         onSave={updateUserHandler}
@@ -178,7 +184,7 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
                       Cerrar sesión
                     </button>
                     <button
-                      onClick={() => showEditModalHandler(user)}
+                      onClick={() => showEditModalHandler(userData)}
                       className="block w-full text-left px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2"
                     >
                       Editar usuario
