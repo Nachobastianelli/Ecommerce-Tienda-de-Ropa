@@ -3,6 +3,7 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import useFetch from "../../hooks/useFetch";
 import useToast from "../../hooks/useToast";
 import { useNavigate } from "react-router-dom";
+import { Fondo } from "../../icons/Icons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -131,6 +132,7 @@ const Login = () => {
           onSubmit={submitHandler}
         >
           <div className="mb-4">
+            <Fondo/>
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Email
             </label>

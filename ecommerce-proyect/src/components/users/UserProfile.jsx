@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import useFetch from "../../hooks/useFetch";
 import useToast from "../../hooks/useToast";
+import { Fondo } from "../../icons/Icons";
 
 const UserProfile = () => {
   const { user, updateUser } = useContext(AuthenticationContext);
@@ -77,6 +78,7 @@ const UserProfile = () => {
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
         onSubmit={handleSubmit}
       >
+        <Fondo/>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Name

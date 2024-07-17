@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { CartIcon } from "../../icons/Icons";
+import { CartIcon, PalmTreeIcon } from "../../icons/Icons";
 import { CartContext } from "../../services/cartContext/CartContext";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { Link } from "react-router-dom";
@@ -21,8 +21,9 @@ const Header = ({ username, onCartOpen }) => {
     <header className="bg-white dark:bg-slate-800 shadow-md py-4 fixed top-0 w-full z-50">
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center">
+          <PalmTreeIcon />
           <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-            <a href="/home">WAIKIKI</a>
+            <a href="/init">WAIKIKI</a>
           </h1>
           <span className="ml-2 text-gray-600 dark:text-gray-300">
             <a href="/home">| Dress</a>
@@ -141,6 +142,7 @@ const Header = ({ username, onCartOpen }) => {
                 className="flex items-center justify-center py-2 px-4 bg-indigo-600 rounded-lg text-white font-semibold cursor-pointer"
               >
                 Login
+                <PalmTreeIcon />
               </a>
             )}
           </div>

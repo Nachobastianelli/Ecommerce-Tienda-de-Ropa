@@ -1,4 +1,6 @@
 import React from "react";
+import PalmerIcon from "../assets/PalmerIcon.png";
+import Beach from "../assets/Beach.png";
 
 export function CartIcon({ itemsLength }) {
   return (
@@ -45,5 +47,17 @@ export function AddToCartIcon() {
       <circle cx="17" cy="20" r="1" />
       <path d="M12 10v4m2-2h-4" />
     </svg>
+  );
+}
+
+export function PalmTreeIcon() {
+  return (
+    <img src={PalmerIcon} alt="Palm Tree" className="h-10 w-10 ml-2" />
+  );
+}
+
+export function Fondo() {
+  return (
+    <img src={Beach} alt="Palm Tree" className="h-20 w-20 ml-20" />
   );
 }
