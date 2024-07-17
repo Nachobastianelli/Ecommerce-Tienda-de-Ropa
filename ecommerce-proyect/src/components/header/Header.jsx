@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { CartIcon } from "../../icons/Icons";
+import { CartIcon, PalmTreeIcon } from "../../icons/Icons";
 import { CartContext } from "../../services/cartContext/CartContext";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { Link } from "react-router-dom";
@@ -81,16 +81,17 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
       <header className="bg-white dark:bg-slate-800 shadow-md py-4 fixed top-0 w-full z-50">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center">
+            <PalmTreeIcon/>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
               <a href="/home">WAIKIKI</a>
             </h1>
             <span className="ml-2 text-gray-600 dark:text-gray-300">
-              <a href="/home">| Indumentaria</a>
+              <a href="/home">| Dress</a>
             </span>
           </div>
           <nav className="flex space-x-4">
             <a href="/home" className={styleButton}>
-              Inicio
+              Home
             </a>
 
             <div className="relative inline-block">
@@ -100,7 +101,7 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
                 onMouseEnter={() => setShowDropdown(true)}
                 onMouseLeave={() => setShowDropdown(false)}
               >
-                Productos
+                Products
               </a>
               {showDropdown && (
                 <div
@@ -112,32 +113,32 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
                     to="/remeras"
                     className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700"
                   >
-                    Remeras
+                    T-shirts
                   </Link>
                   <Link
                     to="/buzos"
                     className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2"
                   >
-                    Buzos
+                    Jersey
                   </Link>
                   <Link
                     to="/zapatillas"
                     className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2"
                   >
-                    Zapatillas
+                    Sneakers
                   </Link>
                   <Link
                     to="/accesorios"
                     className="block px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2"
                   >
-                    Accesorios
+                    Accessories
                   </Link>
                 </div>
               )}
             </div>
             {user && user.role === "Editor" && (
               <a href="/NewProduct" className={styleButton}>
-                Agregar producto
+                Add Product
               </a>
             )}
             {user && user.role === "Admin" && (
@@ -146,7 +147,7 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
                   href="/users"
                   className="relative inline cursor-pointer text-white text-l  before:bg-green-700 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
                 >
-                  Usuarios
+                  Users
                 </a>
               </button>
             )}
@@ -181,19 +182,19 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
                       onClick={handleLogout}
                       className="block w-full text-left px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 "
                     >
-                      Cerrar sesión
+                      Sing off
                     </button>
                     <button
                       onClick={() => showEditModalHandler(userData)}
                       className="block w-full text-left px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2"
                     >
-                      Editar usuario
+                      Edit User
                     </button>
                     <button
                       onClick={clickDeleteHandler}
                       className="block w-full text-left px-4 py-2 text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-slate-700 border-t-2"
                     >
-                      Eliminar usuario
+                      Delete User
                     </button>
                   </div>
                 )}
@@ -205,7 +206,8 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
                   href="/login"
                   className="flex items-center justify-center py-2 px-4 bg-indigo-600 rounded-lg text-white font-semibold cursor-pointer"
                 >
-                  Iniciar sesión
+                  Login
+                  <PalmTreeIcon/>
                 </a>
               )}
             </div>

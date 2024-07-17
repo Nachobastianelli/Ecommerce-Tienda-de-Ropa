@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import PropTypes from "prop-types";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { Fondo } from "../../icons/Icons";
 
 const EditModalOnlyUsers = ({ userInfo, showEditModal, onHide, onSave }) => {
   const [formData, setFormData] = useState({
@@ -59,13 +60,14 @@ const EditModalOnlyUsers = ({ userInfo, showEditModal, onHide, onSave }) => {
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
       <div className="bg-white dark:bg-slate-800 p-6 rounded-lg shadow-lg">
+      <Fondo/>
         <h2 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
-          Editar Usuario
+          Edit User
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 dark:text-gray-300">
-              Nombre de Usuario
+              User name
             </label>
             <input
               type="text"
@@ -129,13 +131,13 @@ const EditModalOnlyUsers = ({ userInfo, showEditModal, onHide, onSave }) => {
               onClick={onHide}
               className="px-4 py-2 bg-gray-200 dark:bg-slate-700 text-gray-900 dark:text-white rounded-md"
             >
-              Cancelar
+              Cancel
             </button>
             <button
               type="submit"
               className="px-4 py-2 bg-violet-600 text-white rounded-md"
             >
-              Guardar
+              Save
             </button>
           </div>
         </form>

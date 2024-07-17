@@ -3,6 +3,7 @@ import useToast from "../../hooks/useToast";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { Fondo } from "../../icons/Icons";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -206,6 +207,7 @@ const Register = () => {
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={submitFormHandler}
         >
+          <Fondo/>
           <div className="flex mb-4 space-x-2">
             <div className="w-1/2">
               <label className="block text-gray-700 text-sm font-bold mb-2">
