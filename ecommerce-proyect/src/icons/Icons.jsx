@@ -1,6 +1,8 @@
 import React from "react";
-import PalmerIcon from "../assets/PalmerIcon.png";
+import PalmerColor from "../assets/coconut-tree.png";
 import Beach from "../assets/Beach.png";
+import editIcon from "../assets/editIcon.png";
+import deleteIcon from "../assets/delete.png";
 
 export function CartIcon({ itemsLength }) {
   return (
@@ -51,13 +53,17 @@ export function AddToCartIcon() {
 }
 
 export function PalmTreeIcon() {
-  return (
-    <img src={PalmerIcon} alt="Palm Tree" className="h-10 w-10 ml-2" />
-  );
+  return <img src={PalmerColor} alt="Palm Tree" className="h-10 w-10 ml-2" />;
 }
 
 export function Fondo() {
-  return (
-    <img src={Beach} alt="Palm Tree" className="h-20 w-20 ml-20" />
-  );
+  return <img src={Beach} alt="Palm Tree" className="h-20 w-20 ml-20" />;
+}
+
+export function EditIcon() {
+  return <img src={editIcon} alt="Edit Icon" className="h-5 w-5 ml-2"></img>;
+}
+
+export function DeleteIcon() {
+  return <img src={deleteIcon} alt="Delete Icon" className=" ml-2"></img>;
 }

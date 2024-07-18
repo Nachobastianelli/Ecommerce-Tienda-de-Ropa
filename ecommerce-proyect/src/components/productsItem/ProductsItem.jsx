@@ -3,6 +3,7 @@ import { AddToCartIcon } from "../../icons/Icons";
 import { CartContext } from "../../services/cartContext/CartContext";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
+import { EditIcon, DeleteIcon } from "../../icons/Icons";
 
 const ProductsItem = ({ product, onShowModal, onEdit }) => {
   const { addToCart } = useContext(CartContext);
@@ -54,7 +55,7 @@ const ProductsItem = ({ product, onShowModal, onEdit }) => {
           </div>
         </div>
         <button
-          className="bg-gray-200 flex items-center justify-center rounded-lg p-2"
+          className="bg-gray-200 flex items-center justify-center rounded-lg p-2 hover:bg-gray-300"
           onClick={handleAddToCart}
         >
           <AddToCartIcon />
