@@ -35,10 +35,10 @@ const PaymentsSeccion = () => {
     if (isCreditCardValid) {
       clearCart();
       localStorage.removeItem("cart");
-      showToast("Compra realizada con éxito!", true);
+      showToast("Successful purchase!", true);
       handleOpenModal();
     } else {
-      showToast("Datos de tarjeta inválidos", false);
+      showToast("Invalid card details", false);
     }
   };
 
@@ -70,7 +70,7 @@ const PaymentsSeccion = () => {
           {isModalOpen && (
             <>
               <div
-                className="fixed inset-0 bg-[#D1FAE5] opacity-100"
+                className="fixed inset-0 bg-sky-200 opacity-100"
                 onClick={handleCloseModal}
               />
               <div className="fixed inset-0 flex justify-center items-center z-20 ">
@@ -110,9 +110,9 @@ const PaymentsSeccion = () => {
                 <Confetti
                   width={window.innerWidth}
                   height={window.innerHeight}
-                  numberOfPieces={500}
+                  numberOfPieces={800}
                   recycle={true}
-                  gravity={0.1}
+                  gravity={0.08}
                 />
               )}
             </>

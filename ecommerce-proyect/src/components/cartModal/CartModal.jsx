@@ -36,7 +36,7 @@ const CartModal = ({ isOpen, onClose }) => {
         {isOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
             <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-lg transform transition-all duration-300 ease-out">
-              <h2 className=" flex text-3xl font-extrabold mb-6 text-gray-900 dark:text-white">
+              <h2 className=" flex text-3xl font-bold mb-6 text-gray-900 dark:text-white justify-center">
                 <Cart />
                 Shopping Cart
               </h2>
@@ -85,11 +85,12 @@ const CartModal = ({ isOpen, onClose }) => {
                 <hr />
               </ul>
               <div className="mt-6">
-                <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white">
-                  Total price: ${calculateTotal}
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white flex justify-center">
+                  Total price: $
+                  <span className="font-bold">{calculateTotal}</span>
                 </h3>
               </div>
-              <div className="mt-8 flex justify-end space-x-4">
+              <div className="mt-8 flex justify-center space-x-4">
                 <button
                   onClick={onClose}
                   className="bg-gray-700 text-white px-5 py-3 rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-500 transition-all duration-200 ease-out"
