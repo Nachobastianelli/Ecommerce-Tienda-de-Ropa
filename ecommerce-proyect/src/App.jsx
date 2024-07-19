@@ -6,13 +6,10 @@ import {
   createBrowserRouter,
   Navigate,
 } from "react-router-dom";
-import Users from "./components/users/Users";
-import UserProfile from "./components/users/UserProfile";
 import Login from "./components/login/Login";
 import NotFound from "./routes/NotFound";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCart } from "./hooks/useCart";
-import NewUser from "./components/newUser/NewUser";
 import useFetch from "./hooks/useFetch";
 import Products from "./components/products/Products";
 import Header from "./components/header/Header";
@@ -25,8 +22,6 @@ import UserAdmin from "./components/userAdmin/UserAdmin";
 import ProductDetails from "./components/productDetails/ProductDetails";
 import NewProduct from "./components/newProduct/NewProduct";
 import { AuthenticationContextProvider } from "./services/authentication/authentication.context";
-import CreditCardInfo from "./components/creditCardInfo/CreditCardInfo";
-import InfoPayments from "./components/infoPayments/InfoPayments";
 import PaymentsSeccion from "./components/paymentsSeccion/PaymentsSeccion";
 import Init from "./components/init/Init";
 import Message from "./components/message/Message";
@@ -84,7 +79,7 @@ function App() {
       path: "/register",
       element: (
         <>
-          <div className="flex justify-center items-center min-h-screen bg-gray-400">
+          <div className="flex justify-center items-center min-h-screen bg-SurfImage bg-cover bg-center">
             <Register />,
           </div>
         </>
@@ -98,25 +93,13 @@ function App() {
       path: "/login",
       element: (
         <>
-          <div className="flex justify-center items-center min-h-screen bg-gray-400">
+          <div className="flex justify-center items-center min-h-screen bg-SurfImage bg-center bg-cover">
             <Login />,
           </div>
         </>
       ),
     },
-    {
-      path: "/profile",
-      element: (
-        <>
-          <div className="flex flex-col justify-center items-center min-h-screen bg-gray-400">
-            <h1 className="text-3xl font-bold mb-8 underline">
-              Edit Profile Information
-            </h1>
-            <UserProfile />
-          </div>
-        </>
-      ),
-    },
+
     {
       path: "/NewProduct",
       element: (

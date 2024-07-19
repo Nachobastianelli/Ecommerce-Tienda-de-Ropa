@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { Sun } from "../../icons/Icons";
 
 const Init = () => {
   const navigate = useNavigate();
@@ -27,7 +28,8 @@ const Init = () => {
         className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl hover:scale-110 transition-transform duration-300 ease-in-out group"
         onClick={clickHandler}
       >
-        <span className="text-6xl">☀️</span>
+        <Sun />
+
         <span className="absolute -top-10 left-1/2 transform -translate-x-1/2 text-white text-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300">
           Home
         </span>

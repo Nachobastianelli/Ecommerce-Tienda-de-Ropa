@@ -3,6 +3,7 @@ import PalmerColor from "../assets/coconut-tree.png";
 import Beach from "../assets/Beach.png";
 import editIcon from "../assets/editIcon.png";
 import deleteIcon from "../assets/delete.png";
+import sun from "../assets/sun.png";
 
 export function CartIcon({ itemsLength }) {
   return (
@@ -66,4 +67,8 @@ export function EditIcon() {
 
 export function DeleteIcon() {
   return <img src={deleteIcon} alt="Delete Icon" className=" ml-2"></img>;
+}
+
+export function Sun() {
+  return <img src={sun} alt="Sun Icon" className="size-36"></img>;
 }
