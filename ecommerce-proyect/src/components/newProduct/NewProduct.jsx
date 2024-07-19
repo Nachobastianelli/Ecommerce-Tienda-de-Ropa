@@ -75,7 +75,7 @@ const NewProduct = ({ onAddProduct }) => {
             htmlFor="name"
             className="block text-sm font-medium text-gray-700 dark:text-white"
           >
-            Nombre
+            Name
           </label>
           <div className="relative mt-1">
             <input
@@ -84,7 +84,7 @@ const NewProduct = ({ onAddProduct }) => {
               value={name}
               onChange={changeNameHandler}
               className="block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-              placeholder="Nombre del Producto"
+              placeholder="Name of the product"
             />
             <FiType className="absolute left-3 top-3.5 text-gray-400 dark:text-gray-300" />
           </div>
@@ -94,7 +94,7 @@ const NewProduct = ({ onAddProduct }) => {
             htmlFor="price"
             className="block text-sm font-medium text-gray-700 dark:text-white"
           >
-            Precio $
+            Price
           </label>
           <div className="relative mt-1">
             <input
@@ -103,7 +103,7 @@ const NewProduct = ({ onAddProduct }) => {
               value={price}
               onChange={changePriceHandler}
               className="block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-              placeholder="Precio del Producto"
+              placeholder="Price of the product"
             />
             <FiDollarSign className="absolute left-3 top-3.5 text-gray-400 dark:text-gray-300" />
           </div>
@@ -113,7 +113,7 @@ const NewProduct = ({ onAddProduct }) => {
             htmlFor="imageUrl"
             className="block text-sm font-medium text-gray-700 dark:text-white"
           >
-            Imagen URL
+            Image URL
           </label>
           <div className="relative mt-1">
             <input
@@ -122,7 +122,7 @@ const NewProduct = ({ onAddProduct }) => {
               value={imageUrl}
               onChange={changeImageHandler}
               className="block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-              placeholder="URL de la Imagen del Producto"
+              placeholder="https://example.com"
             />
             <FiImage className="absolute left-3 top-3.5 text-gray-400 dark:text-gray-300" />
           </div>
@@ -132,7 +132,7 @@ const NewProduct = ({ onAddProduct }) => {
             htmlFor="description"
             className="block text-sm font-medium text-gray-700 dark:text-white"
           >
-            Descripción
+            Description
           </label>
           <div className="relative mt-1">
             <textarea
@@ -140,7 +140,7 @@ const NewProduct = ({ onAddProduct }) => {
               value={description}
               onChange={changeDescriptionHandler}
               className="block w-full pl-10 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-white"
-              placeholder="Descripción del Producto"
+              placeholder="Description of the product"
               rows="3"
             />
             <MdDescription className="absolute left-3 top-3.5 text-gray-400 dark:text-gray-300" />
@@ -150,7 +150,7 @@ const NewProduct = ({ onAddProduct }) => {
           type="submit"
           className="w-full px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-600"
         >
-          Agregar Producto
+          Add Product
         </button>
       </form>
     </div>

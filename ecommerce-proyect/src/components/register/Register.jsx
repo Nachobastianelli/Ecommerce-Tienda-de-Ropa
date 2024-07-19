@@ -74,7 +74,7 @@ const Register = () => {
         ...prevErrors,
         name: {
           error: true,
-          message: "Por favor, ingrese un nombre.",
+          message: "Please, enter name.",
         },
       }));
       formIsValid = false;
@@ -91,7 +91,7 @@ const Register = () => {
         ...prevErrors,
         lastName: {
           error: true,
-          message: "Por favor, ingrese apellido.",
+          message: "Please, enter lastname.",
         },
       }));
       formIsValid = false;
@@ -108,7 +108,7 @@ const Register = () => {
         ...prevErrors,
         email: {
           error: true,
-          message: "Por favor, ingrese un email para continuar.",
+          message: "Please, enter a email.",
         },
       }));
       formIsValid = false;
@@ -118,7 +118,7 @@ const Register = () => {
         ...prevErrors,
         email: {
           error: true,
-          message: "Ya existe un usuario registrado con ese email!",
+          message: "A user has already register whit this emial!",
         },
       }));
       formIsValid = false;
@@ -135,7 +135,7 @@ const Register = () => {
         ...prevErrors,
         password: {
           error: true,
-          message: "Por favor, ingrese una contrasenia.",
+          message: "Please, enter a password.",
         },
       }));
       formIsValid = false;
@@ -152,7 +152,7 @@ const Register = () => {
         ...prevErrors,
         confirmPassword: {
           error: true,
-          message: "Por favor, confirme la contraseña.",
+          message: "Please, confirm the password.",
         },
       }));
       formIsValid = false;
@@ -162,7 +162,7 @@ const Register = () => {
         ...prevErrors,
         confirmPassword: {
           error: true,
-          message: "Las contraseñas no coinciden.",
+          message: "Password do not match.",
         },
       }));
       formIsValid = false;
@@ -245,7 +245,7 @@ const Register = () => {
                 }`}
                 id="lastName"
                 type="text"
-                placeholder="userLastname"
+                placeholder="lastname"
               />
               {errors.lastName.error && (
                 <p className="text-red-500 text-xs italic">

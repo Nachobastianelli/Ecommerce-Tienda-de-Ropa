@@ -116,7 +116,7 @@ function App() {
             <main className="flex-grow bg-gray-100">
               <div className="flex items-center justify-center flex-col mt-24 mx-12 rounded-xl p-8 bg-gray-50 shadow-lg">
                 <h1 className="text-indigo-600 text-4xl font-bold mb-8 ">
-                  Nuevo Producto
+                  New Product
                 </h1>
                 <div className="mb-8">
                   <NewProduct onAddProduct={addProductHandler} />

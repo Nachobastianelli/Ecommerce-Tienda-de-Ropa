@@ -44,7 +44,7 @@ const EditModal = ({ user, showEditModal, onHide, onSave }) => {
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 bg-gray-800 bg-opacity-50">
       <div className="bg-white p-4 rounded shadow-lg w-1/3">
-        <h2 className="text-lg font-semibold mb-4">Editar Usuario</h2>
+        <h2 className="text-lg font-semibold mb-4">Edit User</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
