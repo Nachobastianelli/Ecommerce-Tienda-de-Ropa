@@ -3,7 +3,6 @@ import { AddToCartIcon } from "../../icons/Icons";
 import { CartContext } from "../../services/cartContext/CartContext";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
-import { EditIcon, DeleteIcon } from "../../icons/Icons";
 
 const ProductsItem = ({ product, onShowModal, onEdit }) => {
   const { addToCart } = useContext(CartContext);
@@ -19,12 +18,8 @@ const ProductsItem = ({ product, onShowModal, onEdit }) => {
   const clickHandler = () => {
     navigate(`/home/${product.id}`, {
       state: {
-        product: {
-          name: product.name,
-          description: product.description,
-          imageUrl: product.imageUrl,
-          price: product.price,
-        },
+        product,
+        quantity,
       },
     });
   };
@@ -55,7 +50,7 @@ const ProductsItem = ({ product, onShowModal, onEdit }) => {
           </div>
         </div>
         <button
-          className="bg-gray-200 flex items-center justify-center rounded-lg p-2 hover:bg-gray-300"
+          className="bg-gray-200 flex items-center justify-center rounded-lg p-2 hover:bg-gray-300 active:transform active:translate-y-1 focus:ring transition-all"
           onClick={handleAddToCart}
         >
           <AddToCartIcon />

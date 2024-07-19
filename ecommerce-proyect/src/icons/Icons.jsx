@@ -4,6 +4,7 @@ import Beach from "../assets/Beach.png";
 import editIcon from "../assets/editIcon.png";
 import deleteIcon from "../assets/delete.png";
 import sun from "../assets/sun.png";
+import cart from "../assets/shopping-cart.png";
 
 export function CartIcon({ itemsLength }) {
   return (
@@ -71,4 +72,8 @@ export function DeleteIcon() {
 
 export function Sun() {
   return <img src={sun} alt="Sun Icon" className="size-36"></img>;
+}
+
+export function Cart() {
+  return <img src={cart} alt="Cart Icon" className="size-10 mr-4"></img>;
 }

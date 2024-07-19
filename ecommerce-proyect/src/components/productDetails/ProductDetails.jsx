@@ -1,16 +1,17 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { CartContext } from "../../services/cartContext/CartContext";
 
 const ProductDetails = () => {
   const location = useLocation();
-  const { product } = location.state || {};
   const navigate = useNavigate();
+  const { addToCart } = useContext(CartContext);
+  const { product, quantity } = location.state || {};
 
   if (!product) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-        <div className="text-3xl mb-4"> Product not found 😭</div>
+        <div className="text-3xl mb-4">Product not found 😭</div>
         <div>
           <a
             href="/home"
@@ -22,6 +23,12 @@ const ProductDetails = () => {
       </div>
     );
   }
+
+  const handleAddToCart = () => {
+    if (quantity > 0) {
+      addToCart({ ...product, quantity });
+    }
+  };
 
   return (
     <div className="max-w-5xl mx-auto p-8 mt-28">
@@ -47,6 +54,12 @@ const ProductDetails = () => {
               className="py-2 px-4 flex items-center justify-center bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition duration-300"
             >
               Home
+            </button>
+            <button
+              onClick={handleAddToCart}
+              className="py-2 px-4 flex items-center justify-center bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700  duration-300 active:transform active:translate-y-1 focus:ring transition-all"
+            >
+              Add To Cart
             </button>
           </div>
         </div>

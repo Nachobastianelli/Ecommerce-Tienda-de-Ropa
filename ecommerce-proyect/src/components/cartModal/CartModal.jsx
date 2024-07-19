@@ -6,6 +6,8 @@ import {
   AuthenticationContextProvider,
 } from "../../services/authentication/authentication.context";
 
+import { Cart } from "../../icons/Icons";
+
 const CartModal = ({ isOpen, onClose }) => {
   const { user } = useContext(AuthenticationContext);
 
@@ -34,9 +36,11 @@ const CartModal = ({ isOpen, onClose }) => {
         {isOpen && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
             <div className="bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl w-full max-w-lg transform transition-all duration-300 ease-out">
-              <h2 className="text-3xl font-extrabold mb-6 text-gray-900 dark:text-white">
+              <h2 className=" flex text-3xl font-extrabold mb-6 text-gray-900 dark:text-white">
+                <Cart />
                 Shopping Cart
               </h2>
+              <hr />
               <ul className="divide-y divide-gray-200 dark:divide-gray-700">
                 {cart.map((product) => (
                   <li
@@ -69,6 +73,7 @@ const CartModal = ({ isOpen, onClose }) => {
                         </span>
                       </div>
                     </div>
+
                     <button
                       onClick={() => removeFromCart(product.id)}
                       className="ml-6 bg-red-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 ease-out"
@@ -77,6 +82,7 @@ const CartModal = ({ isOpen, onClose }) => {
                     </button>
                   </li>
                 ))}
+                <hr />
               </ul>
               <div className="mt-6">
                 <h3 className="text-2xl font-extrabold text-gray-900 dark:text-white">
@@ -92,21 +98,27 @@ const CartModal = ({ isOpen, onClose }) => {
                 </button>
                 <button
                   disabled={cart.length === 0 || calculateTotal === "0.00"}
+                  onClick={clearCart}
+                  className={`bg-red-600 text-white px-5 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-200 ease-out
+                    ${
+                      cart.length === 0 || calculateTotal === "0.00"
+                        ? "opacity-50 cursor-not-allowed"
+                        : "hover:bg-red-700"
+                    }
+                  `}
+                >
+                  Clear
+                </button>
+                <button
+                  disabled={cart.length === 0 || calculateTotal === "0.00"}
                   onClick={clickHandler}
                   className={`bg-blue-600 text-white px-5 py-3 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200 ease-out
-                ${cart.length === 0 || calculateTotal === "0.00"
-                      ? "opacity-50 cursor-not-allowed"
-                      : "hover:bg-blue-700"
-                    }
+                ${
+                  cart.length === 0 || calculateTotal === "0.00"
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-blue-700"
+                }
               `}
-                  style={{
-                    opacity:
-                      cart.length === 0 || calculateTotal === "0.00" ? 0.5 : 1,
-                    pointerEvents:
-                      cart.length === 0 || calculateTotal === "0.00"
-                        ? "none"
-                        : "auto",
-                  }}
                 >
                   Buy
                 </button>
