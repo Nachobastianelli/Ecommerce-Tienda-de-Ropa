@@ -139,7 +139,10 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
               )}
             </div>
             {user && user.role === "Editor" && (
-              <a href="/NewProduct" className={styleButton}>
+              <a
+                href="/NewProduct"
+                className="relative inline cursor-pointer text-l before:bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
+              >
                 Add Product
               </a>
             )}
