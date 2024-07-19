@@ -3,7 +3,7 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import useFetch from "../../hooks/useFetch";
 import useToast from "../../hooks/useToast";
 import { useNavigate } from "react-router-dom";
-import { Fondo } from "../../icons/Icons";
+import { Fondo, SurfBoardIconLogin } from "../../icons/Icons";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -141,7 +141,9 @@ const Login = () => {
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={submitHandler}
         >
-          <Fondo />
+          <div className="m-auto my-6">
+            <SurfBoardIconLogin />
+          </div>
           <div className="mb-4">
             <label className="block text-gray-700 text-sm font-bold mb-2">
               Email
@@ -209,12 +211,13 @@ const Login = () => {
               className="inline-block align-baseline font-bold text-sm text-indigo-500 hover:text-indigo-800"
               href="/register"
             >
-              Sign Up
+              🏄🏼‍♂️ Sign Up
             </a>
           </div>
         </form>
-        <p className="text-center text-gray-300 text-xs">
-          &copy;2020 Dani Corp. All rights reserved.
+        <p className="text-center text-gray-50 text-xs">
+          &copy;2020 <span className="font-bold">Dani</span> ❤ Corp. All rights
+          reserved.
         </p>
       </div>
     </>

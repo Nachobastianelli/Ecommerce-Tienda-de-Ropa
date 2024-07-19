@@ -5,6 +5,11 @@ import editIcon from "../assets/editIcon.png";
 import deleteIcon from "../assets/delete.png";
 import sun from "../assets/sun.png";
 import cart from "../assets/shopping-cart.png";
+import surf from "../assets/surf.png";
+import surfCarte from "../assets/surfCartel.png";
+import Wave from "../assets/wave.png";
+import WaveReal from "../assets/waveReal.png";
+import SurfTable from "../assets/surfboard.png";
 
 export function CartIcon({ itemsLength }) {
   return (
@@ -67,7 +72,7 @@ export function EditIcon() {
 }
 
 export function DeleteIcon() {
-  return <img src={deleteIcon} alt="Delete Icon" className=" ml-2"></img>;
+  return <img src={deleteIcon} alt="Delete Icon" className=""></img>;
 }
 
 export function Sun() {
@@ -76,4 +81,46 @@ export function Sun() {
 
 export function Cart() {
   return <img src={cart} alt="Cart Icon" className="size-10 mr-4"></img>;
+}
+
+export function Surf() {
+  return <img src={surf} alt="Surf Icon" className="size-10"></img>;
+}
+
+export function SurfCartel() {
+  return (
+    <img src={surfCarte} alt="SurfCartel Icon" className="h-11 w-11 mr-2"></img>
+  );
+}
+
+export function SurfCartelRegister() {
+  return (
+    <img
+      src={surfCarte}
+      alt="SurfCartel Icon"
+      className="h-20 w-20 ml-20"
+    ></img>
+  );
+}
+
+export function WaveIcon() {
+  return <img src={Wave} alt="Wave Icon" className="size-12 "></img>;
+}
+
+export function WaveRealIcon() {
+  return <img src={WaveReal} alt="WaveReal Icon" className="size-12 "></img>;
+}
+
+export function SurfBoardIcon() {
+  return <img src={SurfTable} alt="SurfBoard Icon" className="size-12 "></img>;
+}
+
+export function SurfBoardIconLogin() {
+  return (
+    <img
+      src={SurfTable}
+      alt="SurfBoard Icon"
+      className="h-20 w-20 ml-20 "
+    ></img>
+  );
 }

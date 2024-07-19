@@ -63,9 +63,7 @@ const User = ({ users, onDelete, onUpdate }) => {
         onClick={() => setShowEditorsOnly(!showEditorsOnly)}
         className="m-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-700 active:transform active:translate-y-1 focus:ring transition-all"
       >
-        {showEditorsOnly
-          ? "Mostrar Todos los Usuarios"
-          : "Mostrar Solo Editores"}
+        {showEditorsOnly ? "Show all Users" : "Show only Editors"}
       </button>
       <ul className="mt-2">
         {filteredUsers.map((user) => (

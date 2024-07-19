@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { CartIcon, PalmTreeIcon } from "../../icons/Icons";
+import { CartIcon, PalmTreeIcon, SurfCartel } from "../../icons/Icons";
 import { CartContext } from "../../services/cartContext/CartContext";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { Link } from "react-router-dom";
@@ -38,7 +38,7 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
 
   const deleteUserHandler = () => {
     if (userIdToDelete) {
-      onDelete(userIdToDelete); // Envía solo el ID del usuario
+      onDelete(userIdToDelete);
       hideModalHandler();
     }
   };
@@ -54,7 +54,7 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
   };
 
   const updateUserHandler = (id, updatedData) => {
-    onUpdate(id, updatedData); // Envía solo el ID y los datos actualizados
+    onUpdate(id, updatedData);
     hideEditModalHandler();
   };
 
@@ -81,7 +81,7 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
       <header className="bg-white dark:bg-slate-800 shadow-md py-4 fixed top-0 w-full z-50">
         <div className="container mx-auto px-4 flex items-center justify-between">
           <div className="flex items-center">
-            <div className="mx-4">
+            <div className="mx-2">
               <PalmTreeIcon />
             </div>
             <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
@@ -90,8 +90,11 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
             <span className="ml-2  text-gray-600 dark:text-gray-300">
               <a href="/home">| Dress</a>
             </span>
+            <div className="mx-1">
+              <SurfCartel />
+            </div>
           </div>
-          <nav className="flex space-x-4">
+          <nav className="flex space-x-4 mr-12">
             <a href="/home" className={styleButton}>
               Home
             </a>

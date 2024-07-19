@@ -51,13 +51,13 @@ const ProductDetails = () => {
           <div className="flex space-x-4">
             <button
               onClick={() => navigate("/home")}
-              className="py-2 px-4 flex items-center justify-center bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition duration-300"
+              className="py-2 px-4 flex items-center justify-center bg-gradient-to-r from-indigo-400 to-indigo-700 text-white rounded-lg shadow hover:bg-indigo-900  duration-100 active:transform active:translate-y-1 transition-all"
             >
               Home
             </button>
             <button
               onClick={handleAddToCart}
-              className="py-2 px-4 flex items-center justify-center bg-sky-600 text-white rounded-lg shadow hover:bg-sky-700  duration-300 active:transform active:translate-y-1 focus:ring transition-all"
+              className="py-2 px-4 flex items-center justify-center bg-gradient-to-r from-sky-300 to-sky-500 text-white rounded-lg shadow hover:bg-gray-500  duration-100 active:transform active:translate-y-1  transition-all"
             >
               Add To Cart
             </button>

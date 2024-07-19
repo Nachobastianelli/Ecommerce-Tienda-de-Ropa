@@ -1,3 +1,5 @@
+import { DeleteIcon } from "../../icons/Icons";
+
 const DeleteModal = ({ onHide, showDeleteModal, onDelete }) => {
   const deleteUserHandler = () => {
     onDelete();
@@ -8,8 +10,9 @@ const DeleteModal = ({ onHide, showDeleteModal, onDelete }) => {
     <>
       <div
         id="popup-modal"
-        className={`${showDeleteModal ? "" : "hidden"
-          } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50`}
+        className={`${
+          showDeleteModal ? "" : "hidden"
+        } overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-full bg-gray-900 bg-opacity-50`}
       >
         <div className="relative p-4 w-full max-w-md max-h-full">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -33,8 +36,9 @@ const DeleteModal = ({ onHide, showDeleteModal, onDelete }) => {
               <span className="sr-only">Close modal</span>
             </button>
             <div className="p-4 md:p-5 text-center">
-              <span className="text-9xl">😭</span>{" "}
-              {/* ↑↑↑ Modificar ESTA ↑↑↑ linea para cambiar el icono antes de la entrega*/}
+              <span className="flex justify-center">
+                <DeleteIcon />
+              </span>{" "}
               <h3 className="mb-5 mt-3 text-lg font-normal text-gray-500 dark:text-gray-400">
                 ¿Are you sure you want to delete the user?
               </h3>

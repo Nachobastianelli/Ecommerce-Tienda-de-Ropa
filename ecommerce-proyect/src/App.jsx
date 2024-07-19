@@ -141,8 +141,8 @@ function App() {
             onUpdate={updateUserHandler}
           />
 
-          <div className="bg-gray-50">
-            <div className="w-2/3 m-auto">
+          <div className="bg-gradient-to-b from-gray-100 via-gray-200 to-white  pb-12">
+            <div className="w-2/3 m-auto ">
               <Products
                 products={products}
                 onDelete={deleteProductHandler}
@@ -154,6 +154,7 @@ function App() {
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
           />
+
           <Footer />
         </>
       ),

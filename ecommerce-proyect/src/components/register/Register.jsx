@@ -3,7 +3,7 @@ import useToast from "../../hooks/useToast";
 import useFetch from "../../hooks/useFetch";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
-import { Fondo } from "../../icons/Icons";
+import { Fondo, SurfCartel, SurfCartelRegister } from "../../icons/Icons";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -207,7 +207,9 @@ const Register = () => {
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
           onSubmit={submitFormHandler}
         >
-          <Fondo/>
+          <span className="pb-14">
+            <SurfCartelRegister />
+          </span>
           <div className="flex mb-4 space-x-2">
             <div className="w-1/2">
               <label className="block text-gray-700 text-sm font-bold mb-2">
@@ -337,24 +339,25 @@ const Register = () => {
           </div>
           <div className="flex items-center justify-between">
             <button
-              className="flex bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline justify-center items-center"
+              className="flex bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline m-auto mb-3"
               type="submit"
             >
               Sign Up
             </button>
           </div>
           <p className="flex text-sm font-light text-gray-500 dark:text-gray-400 items-center justify-center">
-            Already have an account?{" "}
+            Already have an account{"? "}
             <a
               href="/login"
-              className="flex font-medium text-primary-600 hover:underline dark:text-primary-500 items-center justify-center"
+              className="flex font-medium text-indigo-500 hover:underline hover:text-indigo-800 items-center justify-center"
             >
-              Login here
+              {"🏄🏼‍♂️ "}Login here
             </a>
           </p>
         </form>
-        <p className="flex text-center items-center justify-center text-gray-300 text-xs ">
-          &copy;2020 Dani Corp. All rights reserved.
+        <p className="text-center text-gray-600 text-xs">
+          &copy;2020 <span className="font-bold">Dani</span> ❤ Corp. All rights
+          reserved.
         </p>
       </div>
     </>

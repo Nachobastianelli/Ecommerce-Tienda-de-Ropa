@@ -58,7 +58,7 @@ const NewUser = ({ onAddUser }) => {
       surname.trim() === ""
     ) {
       setTypeError("Error");
-      setErrorMessage("Completa todos los campos para enviar el formulario...");
+      setErrorMessage("Fill in all the fields to send the form...");
       return;
     }
 
@@ -75,7 +75,7 @@ const NewUser = ({ onAddUser }) => {
 
     onAddUser(newUser);
     setTypeError("Success");
-    setErrorMessage("El formulario se envio con exito!");
+    setErrorMessage("The user has been successfully created!");
     setEmail("");
     setSurname("");
     setPassword("");

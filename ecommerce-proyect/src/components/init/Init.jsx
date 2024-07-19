@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Sun } from "../../icons/Icons";
+import { Sun, SurfBoardIcon, WaveIcon, WaveRealIcon } from "../../icons/Icons";
 
 const Init = () => {
   const navigate = useNavigate();
@@ -19,10 +19,15 @@ const Init = () => {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-orange-300 opacity-25"></div>
       <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3 text-center text-white">
-        <h1 className="text-6xl font-bold text-white drop-shadow-lg">
-          Waikiki Surf Co.
+        <h1 className="text-5xl font-bold text-white drop-shadow-lg flex items-center justify-center">
+          <span className="mr-6">
+            <WaveRealIcon />{" "}
+          </span>
+          Waikiki Surf Co.{" "}
+          <span className="ml-6">
+            <SurfBoardIcon />
+          </span>
         </h1>
-        <h2 className="text-4xl mt-2">🏄🏼‍♂️🌊</h2>
       </div>
       <button
         className="absolute top-2/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-7xl hover:scale-110 transition-transform duration-300 ease-in-out group"
