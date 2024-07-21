@@ -193,7 +193,11 @@ function App() {
     },
     {
       path: "/payments",
-      element: <PaymentsSeccion />,
+      element: (
+        <div className="min-h-screen overflow-hidden">
+          <PaymentsSeccion />,
+        </div>
+      ),
     },
     {
       path: "/init",

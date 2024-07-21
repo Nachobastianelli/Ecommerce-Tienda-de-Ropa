@@ -38,10 +38,7 @@ const NewProduct = ({ onAddProduct }) => {
         price === 0 ||
         price === ""
       ) {
-        showToast(
-          "Complete todos los campos antes de crear un producto!",
-          false
-        );
+        showToast("fill in all the fields before creating a product!", false);
         return;
       }
 
@@ -53,7 +50,7 @@ const NewProduct = ({ onAddProduct }) => {
       };
 
       onAddProduct(newProduct);
-      showToast("El producto se creó correctamente!", true);
+      showToast("The product was successfully created!", true);
       setName("");
       setDescription("");
       setImageUrl("");

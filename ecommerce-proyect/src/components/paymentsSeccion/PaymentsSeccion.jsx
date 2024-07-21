@@ -73,7 +73,7 @@ const PaymentsSeccion = () => {
                 className="fixed inset-0 bg-sky-200 opacity-100"
                 onClick={handleCloseModal}
               />
-              <div className="fixed inset-0 flex justify-center items-center z-20 ">
+              <div className="fixed inset-0 flex justify-center items-center z-20 h-screen overflow-hidden">
                 <div className="sm:w-[385px] sm:min-w-[40vw] min-w-[100vw] min-h-[30vh] flex flex-col items-center gap-2 p-6 bg-[#FFFFEB] rounded-lg">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -56,7 +56,22 @@ const CreditCardInfo = ({ setIsValid }) => {
 
   return (
     <div className="p-8 bg-gray-100 min-h-screen flex flex-col items-center">
-      <h2 className="text-2xl font-bold mb-8">Credit Card Information</h2>
+      <div className="flex pb-3 border-b-2 border-gray-300 px-20">
+        <p className="mx-4  font-medium  text-lg">Retiro en sucursal</p>
+        <label className="relative inline-flex cursor-not-allowed items-center">
+          <input
+            id="switch"
+            type="checkbox"
+            className="peer sr-only"
+            checked
+            readOnly
+          />
+          <label className="hidden"></label>
+          <div className="peer h-7 w-11 rounded-full border bg-slate-200 after:absolute after:left-[-6px] after:top-0.5 after:h-6 after:w-6 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-slate-800 peer-checked:after:translate-x-full peer-checked:after:border-white peer-focus:ring-green-300"></div>
+        </label>
+      </div>
+      <hr />
+      <h2 className="text-2xl font-bold mb-8 pt-3">Credit Card Information</h2>
       <div className="mb-8">
         <CreditCard
           name={name}
