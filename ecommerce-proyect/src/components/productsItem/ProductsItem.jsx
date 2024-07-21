@@ -45,7 +45,7 @@ const ProductsItem = ({ product, onShowModal, onEdit }) => {
           </h2>
           <div className="flex items-center mb-4">
             <p className="mr-2 text-lg font-semibold text-gray-900 dark:text-white">
-              {product.price}$
+              ${product.price}
             </p>
           </div>
         </div>

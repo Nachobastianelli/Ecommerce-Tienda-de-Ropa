@@ -38,7 +38,7 @@ const NewProduct = ({ onAddProduct }) => {
         price === 0 ||
         price === ""
       ) {
-        showToast("fill in all the fields before creating a product!", false);
+        showToast("Fill in all the fields before creating a product!", false);
         return;
       }
 
