@@ -161,6 +161,17 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
             )}
           </nav>
 
+
+
+          {user && (
+            <div className="flex items-center space-x-4 gap-6">
+              <a href="/purchases" className={styleButton}>
+                My Purchases
+              </a>
+            </div>
+          )}
+
+
           <div className="flex items-center space-x-4 gap-6">
             <button
               className="text-gray-900 dark:text-white hover:underline"

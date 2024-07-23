@@ -26,6 +26,7 @@ import PaymentsSeccion from "./components/paymentsSeccion/PaymentsSeccion";
 import Init from "./components/init/Init";
 import Message from "./components/message/Message";
 import ProtectedEditor from "./routes/ProtectedEditor";
+import Purchases from "./components/purchases/Purchases";
 
 function App() {
   const {
@@ -99,7 +100,10 @@ function App() {
         </>
       ),
     },
-
+    {
+      path: "/purchases",
+      element: <Purchases/>
+    },
     {
       path: "/NewProduct",
       element: (
