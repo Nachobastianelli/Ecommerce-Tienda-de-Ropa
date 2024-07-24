@@ -5,8 +5,10 @@ import { CartContext } from "../../services/cartContext/CartContext";
 import { useNavigate } from "react-router-dom";
 import useToast from "../../hooks/useToast";
 import Confetti from "react-confetti";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
-const PaymentsSeccion = () => {
+const PaymentsSeccion = ({ onAddInvoice, getLastId }) => {
+  const { user } = useContext(AuthenticationContext);
   const { cart, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
   const { showToast } = useToast();
@@ -33,6 +35,22 @@ const PaymentsSeccion = () => {
 
   const handleBuyClick = () => {
     if (isCreditCardValid) {
+      let lastId = getLastId();
+      const newInvoice = {
+        id: lastId + 1,
+        userId: user.id,
+        products: cart.map((item) => ({
+          name: item.name,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+        totalPrice: cart.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        ),
+      };
+      console.log(newInvoice);
+      onAddInvoice(newInvoice);
       clearCart();
       localStorage.removeItem("cart");
       showToast("Successful purchase!", true);

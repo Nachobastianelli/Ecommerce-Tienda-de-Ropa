@@ -19,7 +19,7 @@ const Init = () => {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-orange-300 opacity-25"></div>
       <div className="absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/3 text-center text-white">
-        <h1 className="text-5xl font-bold text-white drop-shadow-lg flex items-center justify-center">
+        <h1 className="text-6xl font-bold font-macondo text-white drop-shadow-lg flex items-center justify-center">
           <span className="mr-6">
             <WaveRealIcon />{" "}
           </span>

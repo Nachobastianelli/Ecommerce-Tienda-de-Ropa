@@ -29,6 +29,7 @@ const Login = () => {
   let role = "";
   let name = "";
   let id = "";
+  let lastname = "";
 
   const changeEmailHandler = (e) => {
     setEmail(e.target.value);
@@ -51,6 +52,7 @@ const Login = () => {
       role = user.role;
       name = user.name;
       id = user.id;
+      lastname = user.lastname;
       return true;
     }
     return false;
@@ -125,7 +127,7 @@ const Login = () => {
 
     if (isValidForm) {
       showToast("You are logged in correctly!", true);
-      handleLogin(email, imageUrl, role, name, id);
+      handleLogin(email, imageUrl, role, name, id, lastname);
       navigate("/home");
     } else {
       showToast("Incorrect email or password", false);

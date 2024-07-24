@@ -194,7 +194,8 @@ const Register = () => {
       const lastId = getLastId(users);
 
       const id = lastId + 1;
-      handleLogin(email, imageUrl, role, name, id);
+      let lastname = lastName;
+      handleLogin(email, imageUrl, role, name, id, lastname);
 
       navigate("/home");
     }

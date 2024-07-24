@@ -10,6 +10,8 @@ import surfCarte from "../assets/surfCartel.png";
 import Wave from "../assets/wave.png";
 import WaveReal from "../assets/waveReal.png";
 import SurfTable from "../assets/surfboard.png";
+import close from "../assets/close.png";
+import caution from "../assets/caution.png";
 
 export function CartIcon({ itemsLength }) {
   return (
@@ -113,6 +115,14 @@ export function WaveRealIcon() {
 
 export function SurfBoardIcon() {
   return <img src={SurfTable} alt="SurfBoard Icon" className="size-12 "></img>;
+}
+
+export function CloseIcon() {
+  return <img src={close} alt="Close Icon" className="size-6"></img>;
+}
+
+export function CautionIcon() {
+  return <img src={caution} alt="Caution Icon" className="size-20 "></img>;
 }
 
 export function SurfBoardIconLogin() {

@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Login from "./components/login/Login";
 import NotFound from "./routes/NotFound";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useCart } from "./hooks/useCart";
 import useFetch from "./hooks/useFetch";
 import Products from "./components/products/Products";
@@ -21,11 +21,15 @@ import Protected from "./routes/Protected";
 import UserAdmin from "./components/userAdmin/UserAdmin";
 import ProductDetails from "./components/productDetails/ProductDetails";
 import NewProduct from "./components/newProduct/NewProduct";
-import { AuthenticationContextProvider } from "./services/authentication/authentication.context";
+import {
+  AuthenticationContext,
+  AuthenticationContextProvider,
+} from "./services/authentication/authentication.context";
 import PaymentsSeccion from "./components/paymentsSeccion/PaymentsSeccion";
 import Init from "./components/init/Init";
 import Message from "./components/message/Message";
 import ProtectedEditor from "./routes/ProtectedEditor";
+import Invoice from "./components/invoice/Invoice";
 
 function App() {
   const {
@@ -46,9 +50,20 @@ function App() {
     updateData: updateProduct,
   } = useFetch("http://localhost:8000/products");
 
+  const {
+    data: invoices,
+    loading: loadingInvoice,
+    error: errorInvoice,
+    addData: addInvoice,
+    deleteData: deleteInvoice,
+    updateData: updateInvoice,
+    getLastId,
+  } = useFetch("http://localhost:8000/invoice");
+
   const [editingUser, setEditingUser] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { cart } = useCart();
+  const { user } = useContext(AuthenticationContext);
 
   const addUserHandler = (newUser) => {
     addUser(newUser);
@@ -160,6 +175,16 @@ function App() {
       ),
     },
     {
+      path: "/invoice",
+      element: (
+        <>
+          <div className=" bg-[#7F5539]">
+            <Invoice invoice={invoices} />
+          </div>
+        </>
+      ),
+    },
+    {
       path: "/home/:id",
       element: (
         <>
@@ -195,7 +220,7 @@ function App() {
       path: "/payments",
       element: (
         <div className="min-h-screen overflow-hidden">
-          <PaymentsSeccion />,
+          <PaymentsSeccion onAddInvoice={addInvoice} getLastId={getLastId} />,
         </div>
       ),
     },

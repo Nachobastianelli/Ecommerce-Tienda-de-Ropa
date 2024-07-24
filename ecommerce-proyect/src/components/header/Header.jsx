@@ -59,7 +59,7 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
   };
 
   const styleButton =
-    "relative inline cursor-pointer text-l before:bg-violet-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100";
+    "relative  m-auto inline cursor-pointer text-l before:bg-violet-600 before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100";
 
   if (error) {
     return <div>Error al cargar los datos de los usuarios</div>;
@@ -84,10 +84,10 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
             <div className="mx-2">
               <PalmTreeIcon />
             </div>
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-2xl font-bold font-macondo text-gray-900 tracking-wide dark:text-white">
               <a href="/home">WAIKIKI</a>
             </h1>
-            <span className="ml-2  text-gray-600 dark:text-gray-300">
+            <span className="ml-2  text-gray-600 font-macondo tracking-wide dark:text-gray-300">
               <a href="/home">| Dress</a>
             </span>
             <div className="mx-1">
@@ -99,7 +99,7 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
               Home
             </a>
 
-            <div className="relative inline-block">
+            <div className="relative inline-block m-auto">
               <a
                 href="#"
                 className={styleButton}
@@ -144,10 +144,23 @@ const Header = ({ onUpdate, onDelete, onCartOpen }) => {
             {user && user.role === "Editor" && (
               <a
                 href="/NewProduct"
-                className="relative inline cursor-pointer text-l before:bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
+                className="relative  inline cursor-pointer text-l before:bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl before:absolute before:-bottom-1 before:block before:h-[2px] before:w-full before:origin-bottom-right before:scale-x-0 before:transition before:duration-300 before:ease-in-out hover:before:origin-bottom-left hover:before:scale-x-100"
               >
                 Add Product
               </a>
+            )}
+            {user && user.role === "User" && (
+              <div className="relative inline-flex  group">
+                <div className="absolute transitiona-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
+                <a
+                  href="/invoice"
+                  title="Get quote now"
+                  className="relative  px-4 py-2 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                  role="button"
+                >
+                  Invoices
+                </a>
+              </div>
             )}
             {user && user.role === "Admin" && (
               <button className="px-3 rounded-md bg-green-600 m-auto">
