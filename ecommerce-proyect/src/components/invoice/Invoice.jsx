@@ -11,6 +11,7 @@ import {
 import ErrorWinXp from "../errorWinXp/ErrorWinXp";
 import useToast from "../../hooks/useToast";
 import { useNavigate } from "react-router-dom";
+import FooterWinError from "../footerWinError/FooterWinError";
 
 const toTitleCase = (str) => {
   return str
@@ -154,16 +155,16 @@ const Invoice = ({ invoice }) => {
   return (
     <div>
       {filteredInvoices.length > 0 ? (
-        <div className="flex justify-center">
-          <h1 className="text-5xl font-md p-4 pb-10 text-[#9C6644]">
+        <div className="flex justify-center flex-col items-center">
+          <h1 className="text-5xl font-md p-4 pb-10 text-[#b08a72]">
             Facturas
           </h1>
-          <div className="relative inline-flex max-h-12 ml-auto m-6">
-            <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#44BCFF] via-[#FF44EC] to-[#FF675E] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
+          <div className="relative inline-flex max-h-12  mb-6">
+            <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-r from-[#ffbb7c] via-[#e7e7e7] to-[#DDB892] rounded-xl blur-lg group-hover:opacity-100 group-hover:-inset-1 group-hover:duration-200 animate-tilt"></div>
             <a
               href="/home"
-              title="Get quote now"
-              className="relative px-4 py-2 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+              title="Back to home"
+              className="relative  px-4 py-2 text-lg font-bold text-[#9C6644] transition-all duration-200 bg-[#EDE0D4] font-pj rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
               role="button"
             >
               Home
@@ -172,7 +173,6 @@ const Invoice = ({ invoice }) => {
         </div>
       ) : (
         <>
-          {showToast("Primero carga productos", false)}
           <ErrorWinXp />
         </>
       )}

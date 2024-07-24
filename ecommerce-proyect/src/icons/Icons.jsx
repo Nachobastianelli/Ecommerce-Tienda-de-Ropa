@@ -12,6 +12,9 @@ import WaveReal from "../assets/waveReal.png";
 import SurfTable from "../assets/surfboard.png";
 import close from "../assets/close.png";
 import caution from "../assets/caution.png";
+import windowsLogo from "../assets/windows.png";
+import wifi from "../assets/wifi.png";
+import volumen from "../assets/volume.png";
 
 export function CartIcon({ itemsLength }) {
   return (
@@ -123,6 +126,18 @@ export function CloseIcon() {
 
 export function CautionIcon() {
   return <img src={caution} alt="Caution Icon" className="size-20 "></img>;
+}
+
+export function WindowsIcon() {
+  return <img src={windowsLogo} alt="Windows Icon" className="size-6"></img>;
+}
+
+export function WifiIcon() {
+  return <img src={wifi} alt="wifi Icon" className="size-6"></img>;
+}
+
+export function VolumenIcon() {
+  return <img src={volumen} alt="Volumen Icon" className="size-6"></img>;
 }
 
 export function SurfBoardIconLogin() {
