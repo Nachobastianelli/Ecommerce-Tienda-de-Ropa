@@ -15,6 +15,7 @@ import caution from "../assets/caution.png";
 import windowsLogo from "../assets/windows.png";
 import wifi from "../assets/wifi.png";
 import volumen from "../assets/volume.png";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 
 export function CartIcon({ itemsLength }) {
   return (
@@ -149,3 +150,25 @@ export function SurfBoardIconLogin() {
     ></img>
   );
 }
+
+const PrevArrow = ({ className, style, onClick }) => (
+  <div
+    className={`${className} custom-arrow size-20`}
+    style={{ ...style, display: "block", left: "250px", zIndex: 1 }}
+    onClick={onClick}
+  >
+    <FaArrowLeft />
+  </div>
+);
+
+const NextArrow = ({ className, style, onClick }) => (
+  <div
+    className={`${className} custom-arrow`}
+    style={{ ...style, display: "block", right: "250px", zIndex: 1 }}
+    onClick={onClick}
+  >
+    <FaArrowRight />
+  </div>
+);
+
+export { PrevArrow, NextArrow };

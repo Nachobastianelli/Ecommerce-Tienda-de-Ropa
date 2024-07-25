@@ -1,4 +1,7 @@
 import InvoiceItem from "../invoiceItem/InvoiceItem";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Slider from "react-slick";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 import { useContext, useState, useEffect } from "react";
 import {
@@ -12,6 +15,7 @@ import ErrorWinXp from "../errorWinXp/ErrorWinXp";
 import useToast from "../../hooks/useToast";
 import { useNavigate } from "react-router-dom";
 import FooterWinError from "../footerWinError/FooterWinError";
+import { PrevArrow, NextArrow } from "../../icons/Icons";
 
 const toTitleCase = (str) => {
   return str
@@ -66,6 +70,16 @@ const Invoice = ({ invoice }) => {
   // if (filteredInvoices.length <= 0) {
   //   return <ErrorWinXp />;
   // }
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
 
   const invoicesMapped = filteredInvoices.map((invoiceItem) => (
     <div key={invoiceItem.id} className="invoice">
@@ -156,7 +170,7 @@ const Invoice = ({ invoice }) => {
     <div>
       {filteredInvoices.length > 0 ? (
         <div className="flex justify-center flex-col items-center">
-          <h1 className="text-5xl font-md p-4 pb-10 text-[#b08a72]">
+          <h1 className="text-5xl font-md p-4 pb-10 text-[#EDE0D4]">
             Facturas
           </h1>
           <div className="relative inline-flex max-h-12  mb-6">
@@ -176,8 +190,11 @@ const Invoice = ({ invoice }) => {
           <ErrorWinXp />
         </>
       )}
-      {filteredInvoices.length > 0 && (
-        <div className="flex items-center justify-center flex-col gap-6">
+      {filteredInvoices.length >= 4 && (
+        <Slider {...settings}>{invoicesMapped}</Slider>
+      )}
+      {filteredInvoices.length > 0 && filteredInvoices.length < 4 && (
+        <div className="flex justify-center items-center  gap-5 flex-col pb-6">
           {invoicesMapped}
         </div>
       )}

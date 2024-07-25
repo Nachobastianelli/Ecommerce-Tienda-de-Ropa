@@ -52,8 +52,8 @@ const FooterWinError = () => {
             </div>
           </div>
           <div className=" flex flex-col ">
-            <p>{currentTime}</p>
-            <p>{currentDate}</p>
+            <p className="font-pixel">{currentTime}</p>
+            <p className="font-pixel">{currentDate}</p>
           </div>
         </div>
       </div>

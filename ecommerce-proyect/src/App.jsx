@@ -29,8 +29,8 @@ import PaymentsSeccion from "./components/paymentsSeccion/PaymentsSeccion";
 import Init from "./components/init/Init";
 import Message from "./components/message/Message";
 import ProtectedEditor from "./routes/ProtectedEditor";
-
 import Invoice from "./components/invoice/Invoice";
+import ProtectedUser from "./routes/ProtectedUser";
 
 function App() {
   const {
@@ -179,9 +179,11 @@ function App() {
       path: "/invoice",
       element: (
         <>
-          <div className=" bg-[#7F5539]">
-            <Invoice invoice={invoices} />
-          </div>
+          <ProtectedUser>
+            <div className=" bg-[#7F5539] min-h-screen">
+              <Invoice invoice={invoices} />
+            </div>
+          </ProtectedUser>
         </>
       ),
     },
